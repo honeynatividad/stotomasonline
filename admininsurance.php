@@ -320,6 +320,7 @@ if(isset($_SESSION['views']))
                
             <hr/>
               <!-- Table with stripped rows -->
+              <form name="myform" action="admininsurancearchive.php" method="post">
               <table class="table datatable">
                 <thead>
                   <tr>
@@ -331,14 +332,21 @@ if(isset($_SESSION['views']))
                   </tr>
                 </thead>
                 <tbody>
+                  
                      <?php 
 				        $vcounter=1;
-				        $result = mysql_query("SELECT * FROM tblinsurance order by fldindex");
+				        $result = mysql_query("SELECT * FROM tblinsurance WHERE fldstatus='Available' order by fldindex");
 				        while($row = mysql_fetch_array($result))
 				        {
 				        ?>
                   <tr>
-                    <th><?php echo $vcounter; ?></th>
+                    <td>
+                      <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkfield[]" value="<?php echo $vcounter; ?>" class="custom-control-input" id="checkfield" >
+                          <label class="custom-control-label" for="checkfield"><?php echo $vcounter; ?></label>
+                      </div>
+                    </td>
+                    
                     <td><?php echo $row['fldcode']; ?></td>
                     <td><?php echo $row['fldinsurance']; ?></td>
                     <td><?php echo $row['fldstatus']; ?></td>
@@ -355,9 +363,13 @@ if(isset($_SESSION['views']))
                     ?>
                   
                 </tbody>
+                
               </table>
-              <!-- End Table with stripped rows -->
-
+              <input type="checkbox" name="Check_ctr" value="yes"
+              onClick="Check(document.myform.checkfield)"><b>Check All</b> <input type="submit" name="submit" class="btn btn-primary btn-sm" value="Archive" />
+              </form>
+              
+              
             </div>
           </div>
 
@@ -419,7 +431,20 @@ if(isset($_SESSION['views']))
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
 
+    function Check(chk){
+      console.log('$$check-->',chk);
+      if(document.myform.Check_ctr.checked==true){
+        for (i = 0; i < chk.length; i++)
+          chk[i].checked = true ;
+      }else{
+
+        for (i = 0; i < chk.length; i++)
+          chk[i].checked = false ;
+      }
+    }
+  </script>
 </body>
 
 </html>

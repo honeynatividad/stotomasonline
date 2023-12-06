@@ -429,6 +429,20 @@ if(isset($_SESSION['views']))
              
             <hr/>
               <!-- Table with stripped rows -->
+              <?php 
+				        $vcounter=1;
+				        $result = mysql_query("SELECT * FROM tblfarm where fldfarmercode='$vcodex' order by fldindex");
+                $rowCount = mysql_num_rows($result);
+                echo '<br>vcodex --> '.$vcodex;
+                if($rowCount ==0) {
+                  
+                ?>
+                NO FARM
+                <?php
+                } else {
+
+                
+              ?>
               <table class="table datatable">
                 <thead>
                   <tr>
@@ -440,32 +454,6 @@ if(isset($_SESSION['views']))
                   </tr>
                 </thead>
                 <tbody>
-                     <?php 
-				        $vcounter=1;
-				        $result = mysql_query("SELECT * FROM tbluser where fldcode='$vcodex' order by fldindex");
-				        while($row = mysql_fetch_array($result))
-				        {
-				        ?>
-                  <tr>
-                    <th><?php echo $vcounter; ?></th>
-                    <td><?php echo $row['fldlocation']; ?></td>
-                    
-                    <td><?php echo $row['fldlotarea']; ?></td>
-                    
-                    <td>
-                        
-                        <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmersfarmedit1.php?vuid=<?php echo $row['fldcode']; ?>'">Edit</button>
-                        
-                        
-                      
-                    </td>
-                  </tr>
-                
-                    
-                    <?php
-                        $vcounter=$vcounter+1;
-                        }
-                    ?>
                     
                     
                     <?php 
@@ -497,6 +485,8 @@ if(isset($_SESSION['views']))
                   
                 </tbody>
               </table>
+              <?php 
+              } ?>
               <!-- End Table with stripped rows -->
 
             </div>

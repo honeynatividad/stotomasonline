@@ -361,8 +361,6 @@ if(isset($_SESSION['views']))
                 $vmiddlenamex=$_POST['txtmiddlename'];
                 $vusernamex=$_POST['txtusername'];
                 $vusertypex="Farmer";
-                $vlocationx=$_POST['txtlocation'];
-                $vlotareax=$_POST['txtlotarea'];
                 $vgenderx=$_POST['txtgender'];
                 $vemailx=$_POST['txtemail'];
                 $vstatusx=$_POST['txtstatus'];
@@ -391,8 +389,8 @@ if(isset($_SESSION['views']))
 				}
 				else
 				{
-				    $sql="INSERT INTO tbluser (fldindex, fldcode, fldlastname, fldfirstname, fldmiddlename, fldusertype, fldemail, fldimage,  fldpassword, fldusername,  fldstatus, fldlocation,fldlotarea, fldgender) 
-                    VALUES ('$vctr','$vcodex','$vlastnamex','$vfirstnamex','$vmiddlenamex','$vusertypex','$vemailx','user.png','12345','$vusernamex','$vstatusx', '$vlocationx', '$vlotareax', '$vgenderx')";
+				    $sql="INSERT INTO tbluser (fldindex, fldcode, fldlastname, fldfirstname, fldmiddlename, fldusertype, fldemail, fldimage,  fldpassword, fldusername,  fldstatus,  fldgender) 
+                    VALUES ('$vctr','$vcodex','$vlastnamex','$vfirstnamex','$vmiddlenamex','$vusertypex','$vemailx','user.png','12345','$vusernamex','$vstatusx',  '$vgenderx')";
 
 				    if (!mysql_query($sql,$con))
 				    {
@@ -419,6 +417,9 @@ if(isset($_SESSION['views']))
                   <d
                   </div>
                 
+                  <!--
+                  HIDE this div
+                  !-->
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Code</label>
                   <div class="col-sm-3">
@@ -428,11 +429,14 @@ if(isset($_SESSION['views']))
                     Looks good!
                   </div>
                 </div>
+                <!--
+                 end HIDE this div
+                  !-->
                 
                 <div class="row mb-3">
                   <label for="validationCustom02" class="form-label col-sm-2 col-form-label">Last name</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="validationCustom02" name="txtlastname" value="<?php echo $vlastnamef; ?>" required>
+                    <input type="text" pattern="[a-zA-Z]*" class="form-control" id="validationCustom02" name="txtlastname" value="<?php echo $vlastnamef; ?>" required>
                     </div>
                   <div class="valid-feedback">
                     Looks good!
@@ -441,7 +445,7 @@ if(isset($_SESSION['views']))
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">First name</label>
                   <div class="col-sm-10">
-                  <input type="text" class="form-control col-sm-6" id="validationCustom01" name="txtfirstname" value="<?php echo $vfirstnamef; ?>" required>
+                  <input type="text" pattern="[a-zA-Z]*" class="form-control col-sm-6" id="validationCustom01" name="txtfirstname" value="<?php echo $vfirstnamef; ?>" required>
                     </div>
                   <div class="valid-feedback">
                     Looks good!
@@ -450,7 +454,7 @@ if(isset($_SESSION['views']))
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Middle name</label>
                   <div class="col-sm-10">
-                  <input type="text" class="form-control col-sm-6" id="validationCustom01" name="txtmiddlename" value="<?php echo $vmiddlenamef; ?>" >
+                  <input type="text" pattern="[a-zA-Z]*" class="form-control col-sm-6" id="validationCustom01" name="txtmiddlename" value="<?php echo $vmiddlenamef; ?>" >
                     </div>
                   <div class="valid-feedback">
                     Looks good!
@@ -467,33 +471,9 @@ if(isset($_SESSION['views']))
                     </div>
                 </div>
                 
-                <div class="row mb-3">
-                  <label for="inputState" class="form-label col-sm-2 col-form-label">Location</label>
-                 <div class="col-sm-3">
-                  <select id="inputState" class="form-select" name="txtlocation">
-                      <?php
-                    $result = mysql_query("SELECT * FROM tblbarangay order by fldindex");
-				    while($row = mysql_fetch_array($result))
-				    {
-                        ?>
-                    <option value="<?php echo $row['fldbarangay']; ?>"><?php echo $row['fldbarangay']; ?></option>
-                      
-                   <?php
-                    }
-                        ?>
-                  </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Lot Area</label>
-                  <div class="col-sm-3">
-                  <input type="number" step="0.01" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlotarea" value="<?php echo $vplantingdistancestartx; ?>" required>  
-                    </div>
-                  
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                </div>
+                 <!--
+                  end HIDE this div
+                  !-->
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Username</label>
                   <div class="col-sm-10">

@@ -329,6 +329,7 @@ if(isset($_SESSION['views']))
                
             <hr/>
               <!-- Table with stripped rows -->
+              <form name="myform" action="admininsurancearchivedetail.php" method="post">
               <table class="table datatable">
                 <thead>
                   <tr>
@@ -344,7 +345,7 @@ if(isset($_SESSION['views']))
                 <tbody>
                      <?php 
 				        $vcounter=1;
-				        $result = mysql_query("SELECT * FROM tblinsuranceaccomplish where fldinsurancecode='$vinsurancecodex' order by fldindex");
+				        $result = mysql_query("SELECT * FROM tblinsuranceaccomplish where fldinsurancecode='$vinsurancecodex' AND fldstatus!='Archive' order by fldindex");
 				        while($row = mysql_fetch_array($result))
 				        {
                             $vfarmercode=$row['fldfarmercode'];
@@ -359,21 +360,50 @@ if(isset($_SESSION['views']))
 				        ?>
                     
                   <tr>
-                    <th><?php echo $vcounter; ?></th>
+                    <td>
+                      <div class="custom-control custom-checkbox">
+                          <input type="checkbox" name="checkfield[]" value="<?php echo $vcounter; ?>" class="custom-control-input" id="checkfield" >
+                          <label class="custom-control-label" for="checkfield"><?php echo $vcounter; ?></label>
+                      </div>
+                    </td>
                     <td><?php echo $row['fldcode']; ?></td>
                     <td><a  href="assets/files/<?php echo $row['fldinsurance']; ?>"><?php echo $row['fldinsurance']; ?></a></td>
                     <td><?php echo $row['flddate']; ?></td>
                     <td><?php echo $vfarmername; ?></td>
-                    <td><?php echo $row['fldstatus']; ?></td>
+                    <td>
+                      <?php 
+                        if($row['fldstatus']=='Verified'){
+                      ?>
+                        <div class="p-3 rounded-3 bg-success">
+                         <?php echo $row['fldstatus'];  ?>
+                        </div>
+                      <?php    
+                        } else if ($row['fldstatus']=='Denied') {
+                      ?>
+                        <div class="p-3 rounded-3 bg-danger">
+                         <?php echo $row['fldstatus'];  ?>
+                        </div>
+                      <?php
+                        }
+                        
+                      ?>
+                    </td>
                     
                     <td>
                         <?php
-                          if($row['fldstatus']!="Verified")  
+                        if($row['fldstatus']=="Denied") 
+                        {
+                            ?>
+                        <button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verify</button>
+                        <?php
+                        }
+                          else if($row['fldstatus']!="Verified")  
                           {
                         ?>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verify</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#verifyModal">Verify</button>
+                        
                         <?php
-                          }
+                        }
                         else
                         {
                             ?>
@@ -383,7 +413,22 @@ if(isset($_SESSION['views']))
                             ?>
                       </td>
                   </tr>
-                    
+                    <!-- Modal -->
+
+                    <div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Verify Insurance</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='admininsuranceverifydenied.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Denied</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verified</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <?php
                         $vcounter=$vcounter+1;
                         }
@@ -392,7 +437,10 @@ if(isset($_SESSION['views']))
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-                <button class="btn btn-warning" type="button" onclick="window.location.href='admininsurance.php'">Return</button>
+              <input type="hidden" name="vinsurancecodex" value="<?php echo $vinsurancecodex; ?>" />
+              <input type="checkbox" name="Check_ctr" value="yes" onclick="Check(document.myform.checkfield)"><b>Check All</b> <input type="submit" name="submit" class="btn btn-primary " value="Archive" />
+              <button class="btn btn-warning" type="button" onclick="window.location.href='admininsurance.php'">Return</button>
+                      </form> 
             </div>
           </div>
 
@@ -454,7 +502,20 @@ if(isset($_SESSION['views']))
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
 
+    function Check(chk){
+      console.log('$$check-->',chk);
+      if(document.myform.Check_ctr.checked==true){
+        for (i = 0; i < chk.length; i++)
+          chk[i].checked = true ;
+      }else{
+
+        for (i = 0; i < chk.length; i++)
+          chk[i].checked = false ;
+      }
+    }
+  </script>
 </body>
 
 </html>

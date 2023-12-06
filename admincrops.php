@@ -324,6 +324,7 @@ if(isset($_SESSION['views']))
               <table class="table datatable">
                 <thead>
                   <tr>
+                    
                    
                     <th scope="col">Crop</th>
                     <th scope="col">Scientific Name</th>

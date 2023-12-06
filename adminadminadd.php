@@ -414,7 +414,8 @@ if(isset($_SESSION['views']))
                     <input type="hidden" name="txtpost" id="txtpost">
                   <div>
                   </div>
-                <!--
+                
+                  <!--
                   HIDE this div
                   !-->
                 <div class="row mb-3">

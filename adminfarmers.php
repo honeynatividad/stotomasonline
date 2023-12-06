@@ -324,8 +324,8 @@ if(isset($_SESSION['views']))
               <table class="table datatable">
                 <thead>
                   <tr>
+
                     <th scope="col">Farmer's Name</th>
-                    <th scope="col">Location</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Username</th>
                     <th scope="col"></th>
@@ -340,7 +340,6 @@ if(isset($_SESSION['views']))
 				        ?>
                   <tr>
                     <td><?php echo $row['fldlastname'].", ".$row['fldfirstname']." ".$row['fldmiddlename']; ?></td>
-                    <td><?php echo $row['fldlocation']; ?></td>
                     <td><?php echo $row['fldgender']; ?></td>
                     <td><?php echo $row['fldusername']; ?></td>
                     <td>

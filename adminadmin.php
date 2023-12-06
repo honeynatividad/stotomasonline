@@ -334,6 +334,7 @@ if(isset($_SESSION['views']))
                     <th scope="col">Image</th>
                     <th scope="col"></th>
                   </tr>
+                  
                 </thead>
                 <tbody>
                      <?php 
