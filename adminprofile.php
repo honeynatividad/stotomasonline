@@ -512,7 +512,7 @@ if(isset($_SESSION['views']))
                 <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" name="txtpassword" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input required type="password" name="txtpassword" class="form-control" id="floatingPassword" placeholder="Password">
                   </div>
                 </div>
                 
