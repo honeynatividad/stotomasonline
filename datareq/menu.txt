@@ -1,0 +1,38 @@
+user:
+admin
+farmers
+
+menu
+admin: 
+add/edit users
+ farmer
+  - barangay
+  - lot area
+heat map by area
+
+crops add category field (fruit vegetables)
+
+additioan table for category (fruit vegetables)
+
+distribution of seeds
+insurance data
+feedback from farmers
+report
+
+farmers:
+request of crops
+submit insurance data
+notification for 
+   harvest time
+   insurance data lacking
+   fertilizer kung kelan lalagyan
+
+feedback 
+  done in fertilizer
+  report in case of disaster, hindi namunga
+
+additional option in menu
+- barangay
+-  barangay name
+-  farm lot area unit hectare
+-    

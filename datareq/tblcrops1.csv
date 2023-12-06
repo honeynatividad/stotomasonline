@@ -1,0 +1,42 @@
+no,code,crop name,scientific name,variety,seeding rate start,seeding rate end,unit,no of seed start,no of seed end,yield start,yield end,plant distance start,plant distance end,unit,no of days start,no of days end
+1,CROP,Ampalaya,Momordica Charantia,opv,0.5,1,g,45053,0,40,0,3,0.35,m,45,100
+2,CROP2,Sweet Pepper,Capsicum Annum,opv,400,0,kg,120,220,28,0,0.75,0.5,cm,60,90
+3,CROP3,Eggplant,Solanum Melongena,opv,350,0,,200,300,27,0,1,0.5,,90,180
+4,CROP4,Tomato,Lycopersicon Esculentum,opv,200,0,,240,400,25,36,1,0.3,,90,120
+5,CROP5,Squash,Cucurbita Maxima,opv,1,0,,10,0,30,0,2,2,,90,120
+6,CROP6,Cucumber,Cucumis Sativus,opv,1,3,,28,50,20,0,0.75,0.3,,45,80
+7,CROP7,Watermelon,Citrulus Vulgaris,opv,0.3,1,,20,35,30,0,2,2,,60,80
+8,CROP8,Muskmelon,Cucumis Melo Var. Cantalupensis,opv,0.5,2,,30,45,30,0,1,1,,75,80
+9,CROP9,Pole Sitao,Vigna sinesis var. Sesquipedalis,opv,15,0,,45116,0,15,0,1,0.3,,45,90
+10,CROP10,Lettuce,Lactuca Sativa,opv,250,"1,000",,850,1000,30,0,0.3,0.2,,50,55
+11,CROP11,Broccoli,Brassica Oleracea var. Italica,opv,350,0,,250,350,20,30,0.5,0.4,,60,80
+12,CROP12,Cabbage,Brassica Oleracea var. Capitata,opv,350,0,,250,350,50,0,0.5,0.4,,80,130
+13,CROP13,Cauliflower,Brassica Oleracea var. Botrytis,opv,300,0,,250,400,20,30,0.5,0.4,,45,60
+14,CROP14,Mustard,Brassica Juncea,opv,300,2500,,500,900,30,0,0.1,0.1,,25,30
+15,CROP15,Pechay,Brassica Campestris,opv,400,3000,,300,700,30,0,0.1,0.1,,25,30
+16,CROP16,Carrots,Daucus Carota,opv,3,0,,600,750,15,0,5,8,,100,0
+17,CROP17,Celery,Apium Graveolens,opv,0.275,1,,2500,0,44961,0,8,8,,50,60
+18,CROP18,Onion,Allium  Cepa,opv,2,5,,300,0,10,0,10,15,,60,90
+19,CROP19,Okra,Hibiscus Esculentus,opv,4,8,,13,23,20,0,0.75,0.3,,45,120
+20,CROP20,Patola,Luffa Cylindrica,opv,0.65,1,,45180,0,10,0,2,2,,45,90
+21,CROP21,Green Onion,Allium Cepa,opv,4,8,,500,600,8,0,10,15,,45,60
+22,CROP22,Radish,Raphanus Sativus,opv,8,0,,60,0,25,0,6,8,,40,70
+23,CROP23,Kangkong,Ipomea Aquatica,opv,40,0,,20,30,30,0,8,8,,30,90
+24,CROP24,Baby Corn,Zea Mays Rugosa,opv,60,0,,45054,0,50,0,0.3,0.15,,55,60
+25,CROP25,Garlic,Allium Sativum,opv,500,1100,,0,0,45054,0,15,25,,100,140
+26,CROP26,Peanut,Arachis Hypogaea,opv,50,60,,0,0,3,0,0.6,0.4,,90,120
+27,CROP27,Mungbean,Phaseolus Aureus,opv,15,18,,45251,0,45057,0,0.7,0.5,,75,90
+28,CROP28,Soybean,Glycine Max,opv,60,80,,44990,0,10,0,0.45,0.1,,90,100
+29,CROP29,Cowpea,Vigna Sp.,opv,10,15,,45180,0,15,0,0.7,0.5,,90,120
+30,CROP30,Sweet Potato,Ipomea Batatas,opv,55000,0,,0,0,30,0,0.75,0.3,,75,120
+31,CROP31,Cassava,Manihot Esculenta,opv,40000,0,,0,0,40,0,1,0.3,,180,360
+32,CROP32,Potato,Solanum Tuberosum,opv,3,5,,0,0,20,0,0.6,0.4,,90,120
+33,CROP33,Taro,Calocasia Esculenta,opv,55000,0,,0,0,30,0,0.75,0.3,,90,180
+34,CROP34,Papaya,Carica Papaya,opv,1320,0,,110,2,45153,0,3,3,,180,720
+35,CROP35,Sweet Pea,Pisium Sativum,opv,30,0,,45148,0,45089,0,0.75,0.2,,30,60
+36,CROP36,Snapbeans,Phaseolus Vulgaris,opv,30,0,,45053,0,15,0,1,0.3,,35,67
+37,CROP37,Pineapple,Ananas Comosus,opv,50,0,,0,0,50,80,12,36,,16,24
+38,CROP38,Coffee,Coffea Arabica,opv,2.3,3.4,,0,0,0.5,1,2,3/3 x 4,,3,4
+39,CROP39,Cacao,Theobroma Cacao,opv,400,1100,,0,0,300,2000,10--20,10--15,,0,0
+40,CROP40,Banana,Musa,opv,2000,0,,0,0,3000,13-Dec,4--7,4 x 4,,11,14
+41,CROP41,Mango,Mangifera Indica,opv,400,0,,0,0,5,22,5,5,,0,0

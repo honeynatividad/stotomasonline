@@ -1,0 +1,6 @@
+Reports: yields per 
+1. barangay and period of harvest (month and year),  
+2.yields per classification of crops, by fruit vegetables, Leafy vegetables, etc
+3. Seed distribution by barangay, all barangays, by all  classifications
+4. List of barangay And farmers subject  for interventions
+Pinned

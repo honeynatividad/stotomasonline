@@ -1,0 +1,3 @@
+Heatmap - seed distribution -all barangays, 
+by classification, yields by barangay and 
+classifications

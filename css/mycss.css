@@ -1,0 +1,465 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+img:hover {
+  opacity: 0.5;
+}*/
+* {
+  box-sizing: border-box;
+}
+
+.zoom {
+  padding: 0px;
+  background-color:aqua;
+  transition: transform .2s;
+  width: 0px;
+  height: 1px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2); 
+}
+h5:hover {
+  background-color:aquamarine;
+}
+a.two:link {color:greenyellow;}
+a.two:visited {color:#0000ff;}
+a.two:hover {font-size:150%;}
+
+//////////////////////////////////////////////////
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+
+//////////////////////////////////////////////////
+body2 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg2 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg2:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body3 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg3 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg3:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body4 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg4 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg4:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body5 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg5 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg5:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body6 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg6 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg6:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body7 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg7 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg7:hover {opacity: 0.7;}
+
+
+//////////////////////////////////////////////////
+body8 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg8 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg8:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body9 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg9 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg9:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body10 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg10 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg10:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body11 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg11 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg11:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body12 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg12 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg12:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body13 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg13 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg13:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body14 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg14 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg14:hover {opacity: 0.7;}
+
+
+//////////////////////////////////////////////////
+body15 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg15 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myIm  g15:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body16 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg16 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg16:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body17 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg17 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg17:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body18 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg18 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg18:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body19 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg19 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg19:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body20 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg20 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg20:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body21 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg21 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg21:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body22 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg22 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg22:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body23 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg23 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg23:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body24 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg24 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg24:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body25 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg25 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg25:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body26 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg26 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg26:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body27 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg27 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg27:hover {opacity: 0.7;}
+
+
+//////////////////////////////////////////////////
+body28 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg28 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg28:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body29 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg29 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg29:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body30 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg30 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg30:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body31 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg31 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg31:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body32 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg32 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg32:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body33 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg33 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg33:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body34 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg34 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg34:hover {opacity: 0.7;}
+
+
+//////////////////////////////////////////////////
+body35 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg35 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg35:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body36 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg36 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg36:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body37 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg37 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg37:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body38 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg38 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg38:hover {opacity: 0.7;}
+
+//////////////////////////////////////////////////
+body39 {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg39 {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg39:hover {opacity: 0.7;}
