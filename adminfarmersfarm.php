@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -449,7 +449,7 @@ if(isset($_SESSION['views']))
                     <th scope="col">#</th>
                     <th scope="col">Location</th>
                     <th scope="col">Lot Area</th>
-                    
+                    <th scope="col">Farm Name</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -467,13 +467,11 @@ if(isset($_SESSION['views']))
                     <td><?php echo $row['fldlocation']; ?></td>
                     
                     <td><?php echo $row['fldlotarea']; ?></td>
-                    
+                    <td><?php echo $row['fldfarmname']; ?></td>
                     <td>
                         
                         <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmersfarmedit.php?vuid=<?php echo $vcodex; ?>&vuid1=<?php echo $row['fldcode']; ?>'">Edit</button>
                         
-                        
-                      
                     </td>
                   </tr>
                 

@@ -3494,7 +3494,7 @@ while($row = mysql_fetch_array($result))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link" href="adminheatmap.php">
+        <a class="nav-link" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>

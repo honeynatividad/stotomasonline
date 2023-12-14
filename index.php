@@ -53,7 +53,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px;" /></a>
+                <a class="navbar-brand" style="font-size: 14px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -71,14 +71,20 @@
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead" style="background-image: url('img/municipal1.jpg');">
+        <?php
+        $homecontentdata = mysql_query("SELECT * FROM tblhomepage WHERE fldstatus='Published' LIMIT 1");
+        while($rowhome = mysql_fetch_array($homecontentdata)){
+
+        
+        ?>
+        <header class="masthead" style="background-image: url('img/<?php echo $rowhome['fldbanner'] ?>');">
             <div class="container">
-                <div class="masthead-subheading">Welcome to the</div>
-                <div class="masthead-heading text-uppercase">Agriculture Office City of Sto Tomas Batangas</div>
+                <div class="masthead-subheading"><?php echo $rowhome['fldhomesubtitle'] ?></div>
+                <div class="masthead-heading text-uppercase"><?php echo $rowhome['fldhomesubtitle'] ?></div>
                 <a class="btn btn-info btn-xl text-uppercase" href="login.php">Goverment Portal</a>
             </div>
         </header>
-       
+        <?php } ?>
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">

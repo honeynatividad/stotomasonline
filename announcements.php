@@ -14,7 +14,9 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css\styles.css" rel="stylesheet" type="text/css"/>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        
     </head>
     <body id="page-top">
         <!-- Messenger Chat Plugin Code -->
@@ -53,7 +55,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px;" /></a>
+            <a class="navbar-brand" style="font-size: 14px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -73,43 +75,76 @@
         <!-- Masthead-->
         <header class="masthead" style="background-color: lightblue;">
             <div class="container">
-        <?php 
+
+                <?php 
                 require("include/conn.php");
-				        $result = mysql_query("SELECT * FROM tblannouncement where fldstatus ='Published' order by fldindex");
-				        while($row = mysql_fetch_array($result))
-				        {
-				        ?>
-                  <button class="accordion-button"><?php echo $row['fldcode'] ?></button>
-                  <div class="panel">
-                      <div class="announcerow">
-                            <div class="announce">
-                                <p class="announce"><img class="announce" style="height:"100px"" src="img/<?php echo $row['fldannouncement'] ?>" alt="image" /> </p>
-                            </div>
-                            <div class="announce">
-                                <p class="announce"><?php echo $row['announceDesc'];  ?> </p>
-                            </div>
-                    </div>
-                  </div>
+                $result2 = mysql_query("SELECT * FROM tblannouncement where fldstatus ='Published' order by fldindex");
+                ?>
+
+
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <?php 
+                            $x=0;
+                            while($row2 = mysql_fetch_array($result2)) {
+                                if ($x==0) {
+                        ?>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $x; ?>" class="active" aria-current="true" aria-label="Slide <?php echo $x ?>"></button>
                         <?php
+                                } else {
+                        ?>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $x; ?>" aria-label="Slide <?php echo $x; ?>"></button>
+                        <?php
+                                }
+                        ?>
+                        
+                        <?php    
+                            $x++;    
+                            }
+                        ?>
+                    </div>
+                    <div class="carousel-inner">
+                    <?php 
+
+                        $result = mysql_query("SELECT * FROM tblannouncement where fldstatus ='Published' order by fldindex");
+                        $i = 0;
+                        while($row = mysql_fetch_array($result)) {
+                            if ($i==0) {
+                            ?>
+                            <div class="carousel-item active">
+                                <img src="img/<?php echo $row['fldannouncement'] ?>" class="d-block w-100" width="500" height="600" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="display-4" style="color:<?php echo $row['txtcolor']; ?>"><?php echo $row['announceDesc'];  ?></h5>
+                                </div>
+                            </div>
+                            <?php
+                            } else {
+                            ?>
+                            <div class="carousel-item">
+                                <img src="img/<?php echo $row['fldannouncement'] ?>" class="d-block w-100" width="500" height="600" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="display-4" style="color:<?php echo $row['txtcolor']; ?>"><?php echo $row['announceDesc'];  ?></h5>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                            $i++;
                         }
-                    ?>
+                        ?>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
-        <script>
-            var acc = document.getElementsByClassName("accordion-button");
-            var i;
+            
 
-            for (i = 0; i < acc.length; i++) {
-              acc[i].addEventListener("click", function() {
-              this.classList.toggle("active");
-              var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-              panel.style.maxHeight = null;
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + "px";
-            } 
-        });
-      }
-        </script>
+   
         </div>
     </header>
         <!-- Footer-->
@@ -270,9 +305,12 @@
             </div>
         </div>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+       
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

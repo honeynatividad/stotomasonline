@@ -256,7 +256,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -415,7 +415,8 @@ if(isset($_SESSION['views']))
 								}
 								else
 								{
-								    mysql_query("UPDATE tbluser SET fldlastname = '$vlastnamex',fldfirstname = '$vfirstnamex',fldmiddlename = '$vmiddlenamex',fldusername = '$vusernamex',fldemail = '$vemailx',fldpassword = '$vpasswordx',fldimage = '$pic' WHERE fldcode = '$vcodex'");	
+                  $password = password_hash($vpasswordx, PASSWORD_DEFAULT);
+								    mysql_query("UPDATE tbluser SET fldlastname = '$vlastnamex',fldfirstname = '$vfirstnamex',fldmiddlename = '$vmiddlenamex',fldusername = '$vusernamex',fldemail = '$vemailx',fldpassword = '$password',fldimage = '$pic' WHERE fldcode = '$vcodex'");	
                                     //Writes the photo to the server
    										 if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
 									    {

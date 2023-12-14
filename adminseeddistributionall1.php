@@ -63,7 +63,7 @@ if(isset($_SESSION['views']))
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+  <link href="css/bootstrap-datepicker.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -252,7 +252,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Heat Map</span>
         </a>
@@ -297,7 +297,7 @@ if(isset($_SESSION['views']))
 $vusercode=$_REQUEST['vuid'];      
 $vcropcode=$_REQUEST['vuid1'];   
 $vrequestedcode=$_REQUEST['vuid2'];   
-
+$vuserfldcode=$_REQUEST['vuiduser'];
 $result = mysql_query("SELECT * FROM tbluser where fldcode='$vusercode'");
 while($row = mysql_fetch_array($result))
 {
@@ -306,10 +306,14 @@ while($row = mysql_fetch_array($result))
     $vlocation=$row['fldlocation'];
     $vlotarea=$row['fldlotarea'];
     $vfarmeremail=$row['fldemail'];
+    
     //echo "aaa".$vfarmeremail;
 }
 
-        
+$tblfarm = mysql_query("SELECT * FROM tblfarm WHERE fldfarmercode = '$vuserfldcode'");
+while($rowfarm = mysql_fetch_array($tblfarm)){
+  $farmcode=$rowfarm['fldcode'];
+}
 
 $result = mysql_query("SELECT * FROM tblcrops where fldcode='$vcropcode'");
 while($row = mysql_fetch_array($result))
@@ -440,6 +444,7 @@ if($vexist==0)
                 $vdatexx = $vdatex->format("Y-m-d");	
 
                 $vseeddistributedx=$_POST['txtseeddistributed'];
+                $frmcode = $_POST['farmcode'];
                 
                 $vexisting=0;
                 $result = mysql_query("SELECT * FROM tblseeddistribution where fldrequestcode='$vrequestcodex'");
@@ -456,6 +461,9 @@ if($vexist==0)
                 }
                 else
                 {
+
+                  
+                  
                     $vctr=0;
                     $result = mysql_query("SELECT * FROM tblseeddistribution order by fldindex");
                     while($row = mysql_fetch_array($result))
@@ -463,8 +471,10 @@ if($vexist==0)
                         $vctr=$row['fldindex'];
                     }
                     $vctr=$vctr+1;
+                    $statusdistribution="Distributed";
                     
-                    $sql="INSERT INTO tblseeddistribution (fldindex, fldcode, fldrequestcode, flddate, fldseeddistributed) VALUES ('$vctr','$vcodex','$vrequestcodex','$vdatexx','$vseeddistributedx')";
+                    
+                    $sql="INSERT INTO tblseeddistribution (fldindex, fldcode, fldrequestcode, flddate, fldseeddistributed, fldstatus,tlbfarmcode, tblcrops) VALUES ('$vctr','$vcodex','$vrequestcodex','$vdatexx','$vseeddistributedx','$statusdistribution', '$frmcode','$vcropcodex')";
 
 				    if (!mysql_query($sql,$con))
 				    {
@@ -500,7 +510,10 @@ if($vexist==0)
                  ?>
                     <script>
 				    alert("Seed Distributed.");	
-				    </script>   
+            
+				    </script>  
+            
+
     		          <meta  http-equiv="refresh" content=".000001;url=adminseeddistributionall.php" />
             	       <?php   
             }
@@ -559,7 +572,7 @@ if($vexist==0)
                     </div>
                 </div>
                 
-                
+                <input type="hidden" name="farmcode" value="<?php echo $farmcode ?>" />
                 
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Qty. Requested</label>
@@ -592,7 +605,7 @@ if($vexist==0)
                     Looks good!
                   </div>
                 </div>
-                
+       
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit" onClick="fSave1()">Submit</button>
                   <button class="btn btn-warning" type="button" onclick="window.location.href='adminseeddistributionall.php'">Return</button>
@@ -631,7 +644,10 @@ if($vexist==0)
     </section>
 
   </main><!-- End #main -->
-
+<script>
+var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("txtdate")[0].setAttribute('min', today);
+</script>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -657,7 +673,7 @@ if($vexist==0)
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  <script src="js/bootstrap-datepicker.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 

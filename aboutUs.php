@@ -63,7 +63,7 @@ require("include1/conn.php");
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px;" /></a>
+            <a class="navbar-brand" style="font-size: 12px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -86,11 +86,24 @@ require("include1/conn.php");
          <!-- Masthead-->
            <header class="masthead" style="background-color: lightblue;">
             <div class="container">
+                <?php 
+                require("include/conn.php");
+                $result = mysql_query("SELECT * FROM tblaboutus");
+                while($row = mysql_fetch_array($result)) {
+                    if($row['aboutus']='Vision') {
+                        $vision=$row['aboutusDesc'];
+                    }
+                    if($row['aboutus']='Mission') {
+                        $mission=$row['aboutusDesc'];
+                    }
+                    
+                }
+                ?>
                 <div class="about-section">
                     <h1>Mission</h1>
-                        <p>"To provide the hightest agricultural services to the community and empower agricultural stakeholders' organizations to produce enough, accessible and affordable products for the Tomasinos."</p>
+                        <p>"<?php echo $mission ?>"</p>
                     <h1>Vission</h1>
-                        <p>"Envisions a dynamic, modernized and self - sufficient community of organized and empowered stakeholders doing profitable business in an ecologically balanced biodiversity through sustainable agriculture and more economic opportunities."</p>
+                        <p>"<?php echo $vision ?>"</p>
                 </div>
 
                 <h2 style="text-align:center">Program</h2>

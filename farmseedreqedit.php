@@ -417,7 +417,11 @@ if(isset($_SESSION['views']))
                 $vrequestedseedx=$_POST['txtrequestedseed'];
 	            $vrequestedqtyx=$_POST['txtrequestedqty'];
                 $vlocationx=$_POST['txtlocation'];
-                $vlotareax=$row['fldlotarea'];
+                // $vlotareax=$row['fldlotarea'];
+                //$vlocationx="";
+                $vlotareax="";
+
+
                 
                 /*$vselectdate=$_POST['txtdaterequested'];
                 $vdatex = new DateTime($vselectdate);
@@ -479,85 +483,7 @@ if(isset($_SESSION['views']))
                   </div>
                 </div>
                 
-                <div class="row mb-3">
-                  <label for="inputState" class="form-label col-sm-2 col-form-label">Location</label>
-                 <div class="col-sm-4">
-                  <select id="inputState" class="form-select" name="txtlocation" onchange="form.submit()">
-                    <?php
-                    if($vlocationx!="")
-                    {
-                    ?>
-                     <option value="<?php echo $vlocationx; ?>"><?php echo $vlocationx; ?></option> 
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if($vlocation!="")
-                    {
-                    ?>
-                     <option value="<?php echo $vlocation; ?>"><?php echo $vlocation; ?></option> 
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    $result = mysql_query("SELECT * FROM tbluser where fldcode='$vusercode' order by fldindex");
-				    while($row = mysql_fetch_array($result))
-				    {
-                        
-                        
-                    ?>
-                    <option value="<?php echo $row['fldlocation']; ?>"><?php echo $row['fldlocation']; ?></option>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    
-                    
-                    $result = mysql_query("SELECT * FROM tblfarm where fldfarmercode='$vusercode' order by fldindex");
-				    while($row = mysql_fetch_array($result))
-				    {
-                        
-                    ?>
-                    <option value="<?php echo $row['fldlocation']; ?>"><?php echo $row['fldlocation']; ?></option>
-                    <?php
-                    }
-                    
-                    ?>
-                  </select>
-                    </div>
-                </div>
                 
-                <div class="row mb-3">
-                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Lot Area</label>
-                  <div class="col-sm-3">
-                <?php
-                if($vlotareax!="")
-                {
-                ?>
-                  <input readonly type="number" step="0.01" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlotarea" value="<?php echo $vlotareax; ?>" required>  
-                
-                <?php
-                }
-                ?>
-                <?php
-                if($vlotarea!="")
-                {
-                
-                ?>
-                  <input readonly type="number" step="0.01" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlotarea" value="<?php echo $vlotarea; ?>" required>  
-                
-                <?php
-                
-                }
-                ?>
-                    </div>
-                
-                    
-               
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                </div>
                 
                 <div class="row mb-3">
                   <label for="inputState" class="form-label col-sm-2 col-form-label">Crop Name</label>
@@ -621,6 +547,30 @@ if(isset($_SESSION['views']))
                
                   <div class="valid-feedback">
                     Looks good!
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputState" class="form-label col-sm-2 col-form-label">Farm</label>
+                  <div class="col-sm-8">
+                    <select id="inputState" class="form-select" name="txtlocation">
+                    <?php
+                    if($vrequestedseedx!=""){
+                    ?>
+                      <option value="<?php echo $vlocation; ?>"><?php echo $vlocation; ?></option>  
+                      <?php
+                    } else {  
+                      $farm = mysql_query("SELECT * FROM tblfarm WHERE fldfarmercode='$vusercode'");
+                      while($rowfarm = mysql_fetch_array($farm)){
+                        $fldlocation=$rowfarm['fldlocation'];
+                     
+                      
+                      ?>
+                      <option value="<?php echo $fldlocation; ?>"><?php echo $fldlocation; ?></option>  
+                      <?php
+                      }
+                    }
+                      ?>
+                    </select>
                   </div>
                 </div>
                 

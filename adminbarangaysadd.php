@@ -253,7 +253,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -358,7 +358,9 @@ if(isset($_SESSION['views']))
             {
               
                 $vbarangayx=$_POST['txtbarangay'];
-                $vlotareax=$_POST['txtlotarea'];
+                $fldlong=$_POST['fldlong'];
+                $fldlat=$_POST['fldlat'];
+               
                 
 				$vdup=0;
 										
@@ -378,7 +380,7 @@ if(isset($_SESSION['views']))
 				}
 				else
 				{
-				    $sql="INSERT INTO tblbarangay (fldindex, fldbarangay, fldlotarea) VALUES ('$vctr','$vbarangayx','$vlotareax')";
+				    $sql="INSERT INTO tblbarangay (fldindex, fldbarangay, fldlong, fldlat) VALUES ('$vctr','$vbarangayx','$fldlong','$fldlat')";
 
 				    if (!mysql_query($sql,$con))
 				    {
@@ -416,16 +418,23 @@ if(isset($_SESSION['views']))
                     Looks good!
                   </div>
                 </div>
-               
-                
                 <div class="row mb-3">
-                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Lot Area</label>
-                  <div class="col-sm-3">
-                  <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlotarea" value="<?php echo $vlotareax; ?>" required>  
+                  <label for="validationCustom02" class="form-label col-sm-2 col-form-label">Longitude</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="validationCustom02" name="fldlong" value="<?php echo $fldlong; ?>" required>
                     </div>
-                    
-                    
-                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="validationCustom02" class="form-label col-sm-2 col-form-label">Latitude</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="validationCustom02" name="fldlat" value="<?php echo $fldlat; ?>" required>
+                    </div>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
                 </div>
                 
                 

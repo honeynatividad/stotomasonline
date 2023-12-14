@@ -252,7 +252,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -353,7 +353,9 @@ if(isset($_SESSION['views']))
         {
             $vlocationx=$row['fldlocation'];
             $vlotareax=$row['fldlotarea'];
-            
+            $vfarmname=$row['fldfarmname'];
+            $vfldlong=$row['fldlong'];
+            $vfldlat=$row['fldlat'];
                             
         }
         
@@ -372,17 +374,19 @@ if(isset($_SESSION['views']))
             {
                 
                 $vcodex=$_POST['txtcode'];
-	            $vfarmercodex=$_POST['txtfarmercode'];
+	              $vfarmercodex=$_POST['txtfarmercode'];
                 $vlocationx=$_POST['txtlocation'];
                 $vlotareax=$_POST['txtlotarea'];
-                
-				    mysql_query("UPDATE tblfarm SET fldlocation = '$vlocationx',fldlotarea = '$vlotareax' WHERE fldcode = '$vcodex'");		
+                $vfarmname=$_POST['txtfarmname'];
+                $vfldlong=$_POST['txtlong'];
+                $vfldlat=$_POST['txtlat'];
+				         mysql_query("UPDATE tblfarm SET fldlocation = '$vlocationx',fldlotarea = '$vlotareax', fldfarmname='$vfarmname', fldlong='$vfldlong', fldlat='$vfldlat' WHERE fldcode = '$vcodex'");		
 										
 										
 				    ?>
                     <script>
-				    alert("Farm Updated.");	
-				    </script>   
+				              alert("Farm Updated.");	
+				            </script>   
     		          <meta  http-equiv="refresh" content=".000001;url=adminfarmersfarm.php?vuid=<?php echo $vfarmercodex; ?>" />
             	       <?php   
 				
@@ -403,6 +407,7 @@ if(isset($_SESSION['views']))
                     Farmer's Name:<?php echo " ".$vlastnamex.", ".$vfirstnamex." ".$vmiddlenamex; ?>
                 <div>
                 <hr/>
+                
                 <div class="row mb-3">
                   <label for="inputState" class="form-label col-sm-2 col-form-label">Location</label>
                  <div class="col-sm-3">
@@ -440,6 +445,42 @@ if(isset($_SESSION['views']))
                     Looks good!
                   </div>
                 </div>
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Farm Name</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" id="validationCustom01" name="txtfarmname" value="<?php echo $vfarmname; ?>" required>  
+                  </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Longitude</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlong" value="<?php echo $vfldlong; ?>" required>  
+                  </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Latitude</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlat" value="<?php echo $vfldlat; ?>" required>  
+                  </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
                 
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit" onClick="fSave1()">Submit</button>

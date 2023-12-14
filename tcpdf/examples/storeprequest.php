@@ -70,7 +70,7 @@ $result = mysql_query("SELECT * FROM tblseedrequested where fldlocation='$vbaran
 }
 while($row = mysql_fetch_array($result))
 {
-    $arrbarangay[$vi]=$row['fldlocation'];
+    //$arrbarangay[$vi]=$row['fldlocation'];
     $arrdaterequested[$vi]=$row['flddaterequested'];
     $arrstatus[$vi]=$row['fldstatus'];
     $arrrequestedqty[$vi]=$row['fldrequestedqty'];
@@ -143,7 +143,7 @@ $pdf->AddPage('P');
 // print a line using Cell()
 $pdf->Cell(0, 1, 'Sto. Tomas City Agricultural Mapping Web Portal', 0, 1, 'L');
 $pdf->Cell(0, 4, 'Seed Request Report ', 0, 1, 'L');
-$pdf->Cell(0, 4, 'Barangay: '.$vbarangayx, 0, 1, 'L');
+//$pdf->Cell(0, 4, 'Barangay: '.$vbarangayx, 0, 1, 'L');
 $pdf->Cell(0, 4, 'Classification: '.$vcropscategoryx, 0, 1, 'L');
 $pdf->Cell(0, 4, 'Inclusive Dates: '.$vstartingdatew." - ".$vendingdatew, 0, 1, 'L');
 $pdf->Cell(0, 4, 'Date Printed: '.$vdatesw, 0, 1, 'L');
@@ -166,7 +166,7 @@ $tbl1 ='';
 ///////////////////////////////////////////// 
 
 
-$tbl1 .= '<tr style="background-color:#336bff;color:#FFFFFF;" align="center"><td width="20">' . "#" . '</td><td width="120">' . "Requested By" . '</td><td width="90">' . "Barangay" . '</td><td width="100">' . "Seed Requested" . '</td><td width="40">' . "Quantity" . '</td><td width="70">' . "Date Requested" . '</td><td width="70">' . "Status" . '</td></tr>';	 
+$tbl1 .= '<tr style="background-color:#336bff;color:#FFFFFF;" align="center"><td width="20">' . "#" . '</td><td width="120">' . "Requested By" . '</td><td width="100">' . "Seed Requested" . '</td><td width="40">' . "Quantity" . '</td><td width="70">' . "Date Requested" . '</td><td width="70">' . "Status" . '</td></tr>';	 
 
 $viii=0;
 $vctr=1;
@@ -176,13 +176,13 @@ while($viii<=$vi)
     if($vcropscategoryx=="All")
     {
     
-    $tbl .= '<tr align="left"><td width="20" align="center">' . $vctr . '</td><td width="120">' . $arrrequestedby[$viii] . '</td><td width="90">' . $arrbarangay[$viii] . '</td><td width="100" align="center">' . $arrcrops[$viii]. '</td><td width="40" align="center">' . $arrrequestedqty[$viii] . '</td><td width="70" align="center">' . $arrdaterequested[$viii] . '</td><td width="70">' . $arrstatus[$viii] . '</td></tr>';
+    $tbl .= '<tr align="left"><td width="20" align="center">' . $vctr . '</td><td width="120">' . $arrrequestedby[$viii] . '</td><td width="100" align="center">' . $arrcrops[$viii]. '</td><td width="40" align="center">' . $arrrequestedqty[$viii] . '</td><td width="70" align="center">' . $arrdaterequested[$viii] . '</td><td width="70">' . $arrstatus[$viii] . '</td></tr>';
     }
     if($vcropscategoryx!="All")
     {
         if($arrcropscategory[$viii]==$vcropscategoryx)
         {
-    $tbl .= '<tr align="left"><td width="20" align="center">' . $vctr . '</td><td width="120">' . $arrrequestedby[$viii] . '</td><td width="90">' . $arrbarangay[$viii] . '</td><td width="100" align="center">' . $arrcrops[$viii]. '</td><td width="40" align="center">' . $arrrequestedqty[$viii] . '</td><td width="70" align="center">' . $arrdaterequested[$viii] . '</td><td width="70">' . $arrstatus[$viii] . '</td></tr>';
+    $tbl .= '<tr align="left"><td width="20" align="center">' . $vctr . '</td><td width="120">' . $arrrequestedby[$viii] . '</td><td width="100" align="center">' . $arrcrops[$viii]. '</td><td width="40" align="center">' . $arrrequestedqty[$viii] . '</td><td width="70" align="center">' . $arrdaterequested[$viii] . '</td><td width="70">' . $arrstatus[$viii] . '</td></tr>';
         }
     }
     $viii=$viii+1;

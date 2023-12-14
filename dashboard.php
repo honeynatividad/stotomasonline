@@ -256,7 +256,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -854,14 +854,35 @@ if(isset($_SESSION['views']))
               <!-- Bar Chart -->
               <canvas id="barChart" style="max-height: 400px;"></canvas>
               <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
+                
+
+                function showBarGraph(){
+            {
+                $.post("seedrequesteddata.php",
+                function (data)
+                {
+                  var checkData = JSON.parse( data );
+                    //console.log(data);
+                     var name = [];
+                    var marks = [];
+                    console.log(checkData);
+                   
+                    for(let i = 0; i < checkData.length; i++) {
+                        let obj = checkData[i];
+
+                        name.push(obj.fldrequestedseed);
+                        marks.push(obj.fldrequestedqty);
+                    }
+                 
+
+
+                    new Chart(document.querySelector('#barChart'), {
                     type: 'bar',
                     data: {
-                      labels: ['Ampalaya', 'Eggplant', 'Pole Sitao', 'Okra', 'Squash', 'Tomato', 'Upo', 'Patola','Cucumber','Watermelon'],
+                      labels: name,
                       datasets: [{
                         label: 'Seed Requests',
-                        data: [<?php echo $vc1; ?>, <?php echo $vc2; ?>, <?php echo $vc3; ?>, <?php echo $vc4; ?>, <?php echo $vc5; ?>, <?php echo $vc6; ?>, <?php echo $vc7; ?>, <?php echo $vc8; ?>, <?php echo $vc9; ?>, <?php echo $vc10; ?>],
+                        data: marks,
                         backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(255, 159, 64, 0.2)',
@@ -891,6 +912,12 @@ if(isset($_SESSION['views']))
                       }
                     }
                   });
+                });
+            }
+        }
+                document.addEventListener("DOMContentLoaded", () => {
+                  showBarGraph();
+                  
                 });
               </script>
               <!-- End Bar CHart -->
@@ -974,31 +1001,57 @@ if(isset($_SESSION['views']))
             
             <div class="card-body">
               <h5 class="card-title">Seed Distributed</h5>
-
+              
               <!-- Bar Chart -->
              <canvas id="lineChart" style="max-height: 400px;"></canvas>
               <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#lineChart'), {
-                    type: 'line',
-                    data: {
-                      labels: ['Ampalaya', 'Eggplant', 'Pole Sitao', 'Okra', 'Squash', 'Tomato', 'Upo', 'Patola','Cucumber','Watermelon'],
-                      datasets: [{
-                        label: 'Seed Distributed',
-                        data: [<?php echo $vl1; ?>, <?php echo $vl2; ?>, <?php echo $vl3; ?>, <?php echo $vl4; ?>, <?php echo $vl5; ?>, <?php echo $vl6; ?>, <?php echo $vl7; ?>, <?php echo $vl8; ?>, <?php echo $vl9; ?>, <?php echo $vl10; ?>],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.4
-                      }]
-                    },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
+
+        function showGraph(){
+            {
+                $.post("seeddistributeddata.php",
+                function (data)
+                {
+                  var checkData = JSON.parse( data );
+                    //console.log(data);
+                     var name = [];
+                    var marks = [];
+                    console.log(checkData);
+                   
+                    for(let i = 0; i < checkData.length; i++) {
+                        let obj = checkData[i];
+
+                        name.push(obj.fldrequestedseed);
+                        marks.push(obj.fldrequestedqty);
+                    }
+                 
+
+
+                    new Chart(document.querySelector('#lineChart'), {
+                      type: 'line',
+                      data: {
+                        labels: name,
+                        datasets: [{
+                          label: 'Seed Distributed',
+                          data: marks,
+                          fill: false,
+                          borderColor: 'rgb(75, 192, 192)',
+                          tension: 0.4
+                        }]
+                      },
+                      options: {
+                        scales: {
+                          y: {
+                            beginAtZero: true
+                          }
                         }
                       }
-                    }
-                  });
+                    });
+                });
+            }
+        }
+                document.addEventListener("DOMContentLoaded", () => {
+                  showGraph();
+                  
                 });
               </script>
               <!-- End Bar CHart -->
@@ -1091,7 +1144,7 @@ if(isset($_SESSION['views']))
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 

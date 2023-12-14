@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 ?>
 
@@ -8,32 +8,23 @@ $vun=$_SESSION['views'];
 ?>
 
 <?php
-if(isset($_SESSION['views']))
-{
+if(isset($_SESSION['views'])){
 	require("include/conn.php");
-	
-	
 	$vun=$_SESSION['views'];
 	
-	
-	
-	if($_SESSION['views']!="a")
-  	{
+	if($_SESSION['views']!="a"){
   
 		$result = mysql_query("SELECT * FROM tbluser where fldusername='$vun'");
-		while($row = mysql_fetch_array($result))
-		{
+		while($row = mysql_fetch_array($result)){
 			$vuser=$row['fldfirstname']." ".$row['fldlastname'];	
-            $vlastname=$row['fldlastname'];
-            $vfirstname=$row['fldfirstname'];
-            $rest = substr($vfirstname, 0, 1);
+      $vlastname=$row['fldlastname'];
+      $vfirstname=$row['fldfirstname'];
+      $rest = substr($vfirstname, 0, 1);
 			$vusertype=$row['fldusertype'];			
 			$vimage=$row['fldimage'];			
-            $vcode=$row['fldcode'];			
+      $vcode=$row['fldcode'];			
  		}
-  ?>    
-
-
+?>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,12 +81,11 @@ if(isset($_SESSION['views']))
       
     <?php
       $vctrn=0;
-        $result = mysql_query("SELECT * FROM tblnotification where fldstatus='Not Yet Viewed' order by fldindex");
-        while($row = mysql_fetch_array($result))
-        {
-            //$vctr=$row['fldindex'];
-            $vctrn=$vctrn+1;
-        }
+      $result = mysql_query("SELECT * FROM tblnotification where fldstatus='Not Yet Viewed' order by fldindex");
+      while($row = mysql_fetch_array($result)){
+          //$vctr=$row['fldindex'];
+          $vctrn=$vctrn+1;
+      }
         
     ?>
     <nav class="header-nav ms-auto">
@@ -253,7 +243,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -277,17 +267,6 @@ if(isset($_SESSION['views']))
           <span>Page Content</span>
         </a>
       </li> 
-    <!-- End Dashboard Nav -->
-
-      <!-- End Contact Page Nav -->
-
-      <!-- End Register Page Nav -->
-
-      <!-- End Login Page Nav -->
-
-      <!-- End Error 404 Page Nav -->
-
-      <!-- End Blank Page Nav -->
 
     </ul>
 <!-- End Menu -->
@@ -335,72 +314,65 @@ if(isset($_SESSION['views']))
     <?php
     
     $vcodex=$_REQUEST['vuid'];
+   
+    $result = mysql_query("SELECT * FROM tblannouncement where fldcode='$vcodex'");
+    while($row = mysql_fetch_array($result)){
+        $vannouncementx=$row['fldannouncement'];
+        $vannounceDesc=$row['announceDesc'];
+        $vstatusx=$row['fldstatus'];   
+        $vtxtcolor=$row['txtcolor'];
+    }
+    $vtest=0;
 								
-        $result = mysql_query("SELECT * FROM tblannouncement where fldcode='$vcodex'");
-        while($row = mysql_fetch_array($result))
-        {
-            $vannouncementx=$row['fldannouncement'];
-            
-            $vstatusx=$row['fldstatus'];                
-        }    
-        
-        
-        
-        
-        $vtest=0;
-								
-        ///////////////////////////////////
-        $vtestx=$_POST['txt1'];
-        //
-        
-        if($vtest==0)
-        {
-            if($vtestx==1)
-            {
+    ///////////////////////////////////
+    $vtestx=$_POST['txt1'];
+   
+    if($vtest==0){
+      if($vtestx==1){
+        $vcodex=$_POST['txtcode'];
+        $vannouncementx=$_POST['txtannouncement'];
+        $vstatusx=$_POST['txtstatus'];
+        $vannounceDesc=$_POST['txtmessage'];
+        $vtxtcolor = $_POST['txtcolor'];
+        $temp = explode(".", $_FILES["photo"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+
+        $target = "img/";
+        $target = $target . $newfilename;
+
+        $pic=($_FILES['photo']['name']);
               
-                $vcodex=$_POST['txtcode'];
-                
-                $vannouncementx=$_POST['txtannouncement'];
-				$vstatusx=$_POST['txtstatus'];
-                
-                $target = "../stotomaswebsite/img/";
-				$target = $target . basename( $_FILES['photo']['name']);
-		
-                $pic=($_FILES['photo']['name']);
-				
-                echo $pic;
-                
-				if($pic=="")
-				{
-				    $pic=$vannouncementx;
-				}
-                
-                mysql_query("UPDATE tblannouncement SET fldannouncement = '$pic',fldstatus = '$vstatusx' WHERE fldcode = '$vcodex'");		
-										//Writes the photo to the server
-   										 if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
-									    {
-
-											basename( $_FILES['uploadedfile']['name']);
-
-										    //Tells you if its all ok
-										    //echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been 
-
-											//uploaded, and your information has been added to the directory";
-									    }
-									    else {
-
-										    //Gives and error if its not
-											  //  echo "Sorry, there was a problem uploading your file.";
-									    }						
-				    ?>
-                    <script>
-				    alert("Announcement Updated.");	
-				    </script>   
-    		          <meta  http-equiv="refresh" content=".000001;url=adminpagecontent.php" />
-            	       <?php   
-				
-            }
+        if($pic==""){
+          $pic=$vannouncementx;
         }
+                
+        if($_FILES['photo']['size'] == 0) {
+          mysql_query("UPDATE tblannouncement SET fldstatus = '$vstatusx', announceDesc='$vannounceDesc', txtcolor='$vtxtcolor' WHERE fldcode = '$vcodex'");		
+        } else {
+          mysql_query("UPDATE tblannouncement SET fldannouncement = '$newfilename',fldstatus = '$vstatusx', announceDesc='$vannounceDesc', txtcolor='$vtxtcolor' WHERE fldcode = '$vcodex'");		
+        }
+
+        
+        //Writes the photo to the server
+       if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)){
+
+          basename( $_FILES['uploadedfile']['name']);
+
+          //Tells you if its all ok
+          //echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been 
+
+        //uploaded, and your information has been added to the directory";
+        }else {
+
+        }						
+				?>
+        <script>
+				    alert("Announcement Updated.");	
+				</script>   
+    		<meta  http-equiv="refresh" content=".000001;url=adminpagecontent.php" />
+          <?php   
+      }
+    }
     /////////////////////////////////////////////////////////
     ?>
              <!-- Custom Styled Validation -->
@@ -426,10 +398,17 @@ if(isset($_SESSION['views']))
                 <div class="row mb-3">
                   <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Announcement</label>
                   <div class="col-sm-3">
-                <input type="text" class="form-control col-sm-6" id="validationCustom01" readonly name="txtannouncement" value="<?php echo $vannouncementx; ?>" required><br>
+                   
+                  <input type="text" class="form-control col-sm-6" id="validationCustom01" name="txtmessage" value="<?php echo $vannounceDesc; ?>" required><br>
                   <input type="file" id="photo" name="photo"  title="Upload New Video">
                     </div>
                   
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleColorInput" class="form-label">Color picker</label>
+                    <div class="col-sm-3">
+                      <input type="color" class="form-control  form-control-color" id="exampleColorInput" name="txtcolor" value="<?php echo $vtxtcolor; ?>" title="Choose your color">
+                    </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputState" class="form-label col-sm-2 col-form-label">Status</label>

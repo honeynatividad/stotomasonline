@@ -373,6 +373,7 @@ if(isset($_SESSION['views']))
                 $vseedplantedqtyx=$_POST['txtseedplantedqty'];
                 
                 $vselectdate=$_POST['txtdateplanted'];
+                $farmcode=$_POST['farmcode'];
                 $vdatex = new DateTime($vselectdate);
                 $vdateplantedx = $vdatex->format("Y-m-d");	
                 
@@ -395,7 +396,7 @@ if(isset($_SESSION['views']))
                     $vctr=$vctr+1;
                     $vcodex="SPL".$vctr;
                     
-                    $sql="INSERT INTO tblseedplanted (fldindex, fldcode, flddistributioncode, fldseedplantedqty, flddateplanted, fldstatus) VALUES ('$vctr','$vcodex','$vdistributioncodex','$vseedplantedqtyx','$vdateplantedx','Seed Planted')";
+                    $sql="INSERT INTO tblseedplanted (fldindex, fldcode, flddistributioncode, fldseedplantedqty, flddateplanted, fldstatus, tblfarmcode) VALUES ('$vctr','$vcodex','$vdistributioncodex','$vseedplantedqtyx','$vdateplantedx','Seed Planted','$farmcode')";
 
 				    if (!mysql_query($sql,$con))
 				    {
@@ -497,6 +498,14 @@ if(isset($_SESSION['views']))
                                         ////////////////////////////////////////
                         
                     }
+
+                    $result = mysql_query("SELECT * FROM tblseeddistribution where fldcode='$vdistributioncodex' order by fldindex");
+                    while($row = mysql_fetch_array($result))
+                    {
+                        $vrequestcodex=$row['fldrequestcode'];
+                        
+                    }
+                    mysql_query("UPDATE tblseedrequested SET fldstatus = 'Seed Planted' WHERE fldcode = '$vrequestcodex'");
                 
                  ?>
                     <script>
@@ -550,6 +559,24 @@ if(isset($_SESSION['views']))
                
                   <div class="valid-feedback">
                     Looks good!
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputState" class="form-label col-sm-2 col-form-label">Farm</label>
+                  <div class="col-sm-3">
+                    <select id="inputState" class="form-select" name="farmcode">
+                      
+                      <?php
+                       
+                       $result = mysql_query("SELECT * FROM tblfarm where fldfarmercode='$vusercode' order by fldindex");
+                        while($row = mysql_fetch_array($result))
+                        {
+                        
+                      ?>
+                      <option value="<?php echo $row['fldcode']; ?>"><?php echo $row['fldlocation']; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
                 

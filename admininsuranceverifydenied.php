@@ -38,7 +38,7 @@ $result = mysql_query("SELECT * FROM tbluser where fldcode='$vfarmercode' order 
                         $vdatex=$row['flddate'];
                     }
                 
-                    $vtitlex="Insurance Form Verificed";
+                    $vtitlex="Insurance Form Verified";
                     $vsubtitlex="The submitted insurance form has been verified";
                     $vnotificationx="Your submitted insurance form last ".$vdatex." has been verified";
                     

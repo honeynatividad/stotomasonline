@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -335,19 +335,19 @@ if(isset($_SESSION['views']))
                 <tbody>
                      <?php 
 				        $vcounter=1;
-				        $result = mysql_query("SELECT * FROM tblAboutUs order by fldindex");
+				        $result = mysql_query("SELECT * FROM tblannouncement order by fldindex");
 				        while($row = mysql_fetch_array($result))
 				        {
 				        ?>
                   <tr>
                     <th><?php echo $vcounter; ?></th>
                     <td><?php echo $row['fldcode']; ?></td>  
-                    <td><a target="_blank" href="img/<?php echo $row['fldannouncement']; ?>"><img width="60" height="70" src="img/<?php echo $row['aboutus']; ?>" /></td>
-                     <td><a target="_blank" href="img/<?php echo $row['announceDesc']; ?>"><img width="60" height="70" src="img/<?php echo $row['aboutusDesc']; ?>" /></td>
-                    <td><button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminannouncementedit.php?vuid=<?php echo $row['aboutID']; ?>'">Edit</button></td>
-                     <a href="adminAboutUsDelete.php?vuid=<?php echo $row['aboutID'] ?>">
-				                <input type="button" value="Delete" class="button-red" title="Click to Delete <?php echo $row['aboutID'] ?>"
-				                onclick="return confirm('Are you sure you want to delete, <?php echo $row['aboutus'] ?>?')"
+                    <td><a target="_blank" href="img/<?php echo $row['fldannouncement']; ?>"><img width="60" height="70" src="img/<?php echo $row['fldannouncement']; ?>" /></td>
+                     <td><?php echo $row['announceDesc']; ?></td>
+                    <td><button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminannouncementedit.php?vuid=<?php echo $row['fldcode']; ?>'">Edit</button>
+                     <a href="adminannouncementdelete.php?vuid=<?php echo $row['fldcode'] ?>">
+				                <input type="button" value="Delete" class="button-red" title="Click to Delete <?php echo $row['fldcode'] ?>"
+				                onclick="return confirm('Are you sure you want to delete, <?php echo $row['fldcode'] ?>?')"
 				                ></a></td>
                   </tr>
                     

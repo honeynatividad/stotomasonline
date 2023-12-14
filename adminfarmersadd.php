@@ -250,7 +250,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -389,8 +389,9 @@ if(isset($_SESSION['views']))
 				}
 				else
 				{
+          $password = password_hash('12345', PASSWORD_DEFAULT);
 				    $sql="INSERT INTO tbluser (fldindex, fldcode, fldlastname, fldfirstname, fldmiddlename, fldusertype, fldemail, fldimage,  fldpassword, fldusername,  fldstatus,  fldgender) 
-                    VALUES ('$vctr','$vcodex','$vlastnamex','$vfirstnamex','$vmiddlenamex','$vusertypex','$vemailx','user.png','12345','$vusernamex','$vstatusx',  '$vgenderx')";
+                    VALUES ('$vctr','$vcodex','$vlastnamex','$vfirstnamex','$vmiddlenamex','$vusertypex','$vemailx','user.png','$password','$vusernamex','$vstatusx',  '$vgenderx')";
 
 				    if (!mysql_query($sql,$con))
 				    {

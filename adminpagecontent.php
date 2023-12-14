@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -347,7 +347,18 @@ if(isset($_SESSION['views']))
                     </div>
                   </div>
                 </div>
-                  
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingHome">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHome" aria-expanded="false" aria-controls="collapseTwo">
+                      Home Page
+                    </button>
+                  </h2>
+                  <div id="collapseHome" class="accordion-collapse collapse" aria-labelledby="headingHome" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <a href="adminpagecontenthome.php">Manage Home Page Content</a><hr/>
+                    </div>
+                  </div>
+                </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -370,9 +381,9 @@ if(isset($_SESSION['views']))
                   </h2>
                   <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <a href="adminpagecontentannouncement.php">Manage Text for Mission</a><hr/>
-                    <a href="adminpagecontentannouncement.php">Manage Text for Vision</a><hr/>
-                        <a href="adminpagecontentannouncement.php">Manage Images and Text for Programs</a><hr/>
+                      <a href="adminpagecontentaboutusmission.php">Manage Text for Mission</a><hr/>
+                    <a href="adminpagecontentaboutusvision.php">Manage Text for Vision</a><hr/>
+                        <a href="adminpagecontentaboutusprograms.php">Manage Images and Text for Programs</a><hr/>
                     </div>
                   </div>
                 </div>
@@ -396,23 +407,7 @@ if(isset($_SESSION['views']))
           </div>
 
         </div>
-            <!-- Sales Card -->
-            <!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <!-- End Revenue Card -->
-
-            <!-- Customers Card -->
-            <!-- End Customers Card -->
-
-            <!-- Reports -->
-            <!-- End Reports -->
-
-            <!-- Recent Sales -->
-            <!-- End Recent Sales -->
-
-            <!-- Top Selling -->
-            <!-- End Top Selling -->
+          
 
           </div>
         </div><!-- End Left side columns -->

@@ -318,7 +318,6 @@ if(isset($_SESSION['views']))
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Code</th>
                     <th scope="col">Crop Name</th>
                     <th scope="col">Qty. Requested (Grams)</th>
                     <th scope="col">Date Requested</th>
@@ -335,7 +334,9 @@ if(isset($_SESSION['views']))
                             $vdisstatus="";
                             $vcropcode=$row['fldrequestedseed'];
                             $vrequestcode=$row['fldcode'];
+                
                             $result1 = mysql_query("SELECT * FROM tblcrops where fldcode='$vcropcode' order by fldindex");
+                            
 				            while($row1 = mysql_fetch_array($result1))
 				            {
                                 $vcrops=$row1['fldcrops'];
@@ -345,30 +346,18 @@ if(isset($_SESSION['views']))
 				            {
                                 $vdistributioncode=$row1['fldcode'];
                                 $vdisstatus=$row1['fldstatus'];
-                            }
+                           
 				        ?>
                   <tr>
                     <th><?php echo $vcounter; ?></th>
-                    <td><?php echo $row['fldcode']; ?></td>
                     <td><?php echo $vcrops; ?></td>
-                    <td><?php echo $row['fldrequestedqty']; ?></td>
-                    <td><?php echo $row['flddaterequested']; ?></td>
+                    <td><?php echo $row1['fldseeddistributed']; ?></td>
+                    <td><?php echo $row1['flddate']; ?></td>
+                    
+                    <td><?php echo $row1['fldstatus']; ?></td>
+                    
                     <?php
-                    if($vdisstatus=="Seed Planted")
-                    {
-                    ?>
-                     <td><?php echo $vdisstatus; ?></td> 
-                    <?php
-                    }
-                    else
-                    {
-                        ?>
-                    <td><?php echo $row['fldstatus']; ?></td>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if($row['fldstatus']=="Distributed" && $vdisstatus!="Seed Planted")        
+                    if($row1['fldstatus']=="Distributed" && $row1['fldstatus']!="Seed Planted")        
                     {
                      ?>   
                     <td>
@@ -378,7 +367,7 @@ if(isset($_SESSION['views']))
                     <?php
                         
                     }
-                    if($row['fldstatus']=="Seed Requested")        
+                    if($row1['fldstatus']=="Seed Requested")        
                     {
                     ?>
                     <td><button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='farmseedreqedit.php?vuid=<?php echo $row['fldcode']; ?>'">Record</button></td>       
@@ -396,7 +385,7 @@ if(isset($_SESSION['views']))
                     
                     <?php
                         $vcounter=$vcounter+1;
-                        }
+                        }}
                     ?>
                   
                 </tbody>

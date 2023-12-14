@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -275,212 +275,176 @@ if(isset($_SESSION['views']))
           <span>Page Content</span>
         </a>
       </li> 
-    <!-- End Dashboard Nav -->
-
-      <!-- End Contact Page Nav -->
-
-      <!-- End Register Page Nav -->
-
-      <!-- End Login Page Nav -->
-
-      <!-- End Error 404 Page Nav -->
-
-      <!-- End Blank Page Nav -->
-
     </ul>
 <!-- End Menu -->
   </aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
+     <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h5><i class="bi bi-flower1"></i>&nbsp;Crops / Seed Distribution</h5>
-      
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="admincrops.php">Crops</a></li>
-            
-            <li class="breadcrumb-item">Seed Distribution</li>
+     <div class="pagetitle">
+          <h5><i class="bi bi-flower1"></i>&nbsp;Crops / Seed Distribution</h5>
           
-        </ol>
-      </nav>
-      
-    </div><!-- End Page Title -->
+          <nav>
+          <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="admincrops.php">Crops</a></li>
+               
+               <li class="breadcrumb-item">Seed Distribution</li>
+               
+          </ol>
+          </nav>
+          
+     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-      <div class="row">
-        <?php
-        $vcropcode=$_REQUEST['vuid'];
-								
-        $result = mysql_query("SELECT * FROM tblcrops where fldcode='$vcropcode'");
-        while($row = mysql_fetch_array($result))
-        {
-            $vcrops=$row['fldcrops'];
-            $vscientificname=$row['fldscientificname'];
-            $vvariety=$row['fldvariety'];
-            $vcropscategory=$row['fldcropscategory'];
-            
-        }
-        ?>
-        <!-- Left side columns -->
-        <div class="col-lg-12">
+     <section class="section dashboard">
           <div class="row">
-            <div class="col-lg-12">
+          <?php
+          $vcropcode=$_REQUEST['vuid'];
+                                             
+          $result = mysql_query("SELECT * FROM tblcrops where fldcode='$vcropcode'");
+          while($row = mysql_fetch_array($result)){
+               $vcrops=$row['fldcrops'];
+               $vscientificname=$row['fldscientificname'];
+               $vvariety=$row['fldvariety'];
+               $vcropscategory=$row['fldcropscategory'];
+               
+          }
+          ?>
+        <!-- Left side columns -->
+          <div class="col-lg-12">
+               <div class="row">
+                    <div class="col-lg-12">
 
-          <div class="card">
-            <div class="card-body">
-              
-                <hr/>
-              
-              <!-- End Default Table Example -->
-            
-              <!-- Basic Modal -->
-              
-              <!-- End Basic Modal-->
+                    <div class="card">
+                         <div class="card-body">
+               
+                    <hr/>
 
-            </div>
-          </div>
+                    </div>
+               </div>
 
               <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Farmer's Name</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Lot Area (ha)</th>
+               <table class="table datatable">
+                         <thead>
+                              <tr>
+                                   <th scope="col">#</th>
+                                   <th scope="col">Code</th>
+                                   <th scope="col">Farmer's Name</th>
+                                   
+                                   <th scope="col">Requested Seed</th>
+                                   <th scope="col">Qty. Requested (Grams)</th>
+                                   <th scope="col">Date Requested</th>
+                                   <th scope="col">Qty. Distributed (Grams)</th>
+                                   <th scope="col">Status</th>
+                                   <th scope="col"></th>
+                                   
+                              </tr>
+                         </thead>
+                         <tbody>
+                         <?php 
+                              $vcounter=1;
+                              $result = mysql_query("SELECT * FROM tblseedrequested where  fldstatus!='Retired' order by flddaterequested desc");
+                              while($row = mysql_fetch_array($result)){
+                                   $vrequestcode=$row['fldcode'];
+                                   $vstatusx=$row['fldstatus'];
+                                   $result1 = mysql_query("SELECT * FROM tblseeddistribution where fldrequestcode='$vrequestcode' order by fldindex");
+                                   $vf=0;
+                                   while($row1 = mysql_fetch_array($result1)){
+                                        $vdistributioncode=$row1['fldcode'];
+                                        $vseeddistributed=$row1['fldseeddistributed'];
+                                        $vstatusx=$row1['fldstatus'];
+                                        $vf=1;
+                                        if($row1['fldstatus']==""){
+                                             //$vstatusx="Distributed";
+                                        }
+
+                                        if($row1['fldyield']!=0){
+                                             //$vstatusx="Harvested";
+                                        }
+                                   }
+                                   $result1 = mysql_query("SELECT * FROM tblseedplanted where flddistributioncode='$vdistributioncode' order by fldindex");
+                                   while($row1 = mysql_fetch_array($result1)){
+                                        if($row1['fldyield']!=0){
+                                             //$vstatusx="Harvested";
+                                        }
+                                   }
+                                   if($vf==0){
+                                   //$vstatusx="Distributed";
+                                   }
+                                   
+                                   $vseedrequestedcode=$row['fldrequestedseed'];
+                                   $result1 = mysql_query("SELECT * FROM tblcrops where fldcode='$vseedrequestedcode' order by fldindex");
+                                   while($row2 = mysql_fetch_array($result1)){
+                                        $vcrops=$row2['fldcrops'];
+                         
+                                   }
+                              
+                              
+                                   $vusercode=$row['fldrequestedby'];
+                                   $vrequestedqty=$row['fldrequestedqty'];
+                                   $vdaterequested=$row['flddaterequested'];
                     
-                    <th scope="col">Requested Seed</th>
-                    <th scope="col">Qty. Requested (Grams)</th>
-                    <th scope="col">Date Requested</th>
-                    <th scope="col">Qty. Distributed (Grams)</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
+                                   $result1 = mysql_query("SELECT * FROM tbluser where fldcode='$vusercode' order by fldindex");
+                                   while($row3 = mysql_fetch_array($result1)){
+								$fullname = $row3['fldlastname'] .','.$row3['fldfirstname']." ".$row3['fldmiddlename'];
+								$userfldcode=$row3['fldcode'];
+							}
+                              ?>
+                              <tr>
+                                   <th><?php echo $vcounter; ?></th>
+                                   <td><?php echo $userfldcode; ?></td>
+                                   <td><?php echo $fullname; ?></td>
+                              
+                                   <td><?php echo $vcrops; ?></td>  
+                                   <td><?php echo $row['fldrequestedqty']; ?></td>
+                                   <td><?php echo $row['flddaterequested']; ?></td>
+                                   <td><?php echo $vseeddistributed; ?></td>
+                                   <td><?php echo $row['fldstatus']; ?></td>
+                                   <?php
+                                   if($row['fldstatus']!="Distributed"){
+                                   ?>   
+                                        <td><button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminseeddistributionall1.php?vuid=<?php echo $userfldcode; ?>&vuid1=<?php echo $vseedrequestedcode; ?>&vuid2=<?php echo $row['fldcode']; ?>&vuiduser=<?php echo $userfldcode?>'">&nbsp;&nbsp;View&nbsp;&nbsp;
+                                   <?php
+                                   }else{
+                                   
+                                        $vpa=0;
+                                        $result2 = mysql_query("SELECT * FROM tblseedplanted where flddistributioncode='$vdistributioncode'  order by fldindex");
+                                        while($row2 = mysql_fetch_array($result2)){
+                                             $vpa=1;
+                                             $vseedplantedcode=$row2['fldcode'];    
+                                        }
+                                   ?>  
+                                        <?php 
+                                        if($vpa==1){
+                                        ?>
+                                        <td><button  type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmharvestcropspicall.php?vuid=<?php echo $vseedplantedcode; ?>&vuid1=<?php echo $vcrops; ?>'">View Picture</button></td>  
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <td><button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminseeddistribution1.php?vuid=<?php echo $userfldcode; ?>&vuid1=<?php echo $vcropcode; ?>&vuid2=<?php echo $row['fldcode']; ?>&vuiduser=<?php echo $userfldcode?>'">&nbsp;&nbsp;View&nbsp;&nbsp;</button></td> 
+                                        <?php
+                                        }
+                                   }
+                                   ?>
+                         
+                         
+                              </tr>
+                         
+                                   <?php
+                                        $vcounter=$vcounter+1;
+                                        $vseeddistributed="";
+                                   
+
+                              	}
+                              ?>
                     
-                  </tr>
-                </thead>
-                <tbody>
-                     <?php 
-				        $vcounter=1;
-                        $result = mysql_query("SELECT * FROM tblseedrequested where  fldstatus!='Retired' order by flddaterequested desc");
-				        while($row = mysql_fetch_array($result))
-				        {
-                            $vrequestcode=$row['fldcode'];
-                            $vstatusx=$row['fldstatus'];
-                            $result1 = mysql_query("SELECT * FROM tblseeddistribution where fldrequestcode='$vrequestcode' order by fldindex");
-                            $vf=0;
-				            while($row1 = mysql_fetch_array($result1))
-				            {
-                                $vdistributioncode=$row1['fldcode'];
-                                $vseeddistributed=$row1['fldseeddistributed'];
-                                $vstatusx=$row1['fldstatus'];
-                                $vf=1;
-                                if($row1['fldstatus']=="")
-                                {
-                                    $vstatusx="Distributed";
-                                }
-                                if($row1['fldyield']!=0)
-                                {
-                                    $vstatusx="Harvested";
-                                }
-                                //echo "aaa".$vstatusx;
-                            }
-                            $result1 = mysql_query("SELECT * FROM tblseedplanted where flddistributioncode='$vdistributioncode' order by fldindex");
-                            
-				            while($row1 = mysql_fetch_array($result1))
-				            {
-                                if($row1['fldyield']!=0)
-                                {
-                                    $vstatusx="Harvested";
-                                }
-                            }
-                            if($vf==0)
-                            {
-                                //$vstatusx="Distributed";
-                            }
-                            
-                            $vseedrequestedcode=$row['fldrequestedseed'];
-                            $result1 = mysql_query("SELECT * FROM tblcrops where fldcode='$vseedrequestedcode' order by fldindex");
-				            while($row1 = mysql_fetch_array($result1))
-				            {
-                                $vcrops=$row1['fldcrops'];
-                                
-                            }
-                            
-                            
-                            $vusercode=$row['fldrequestedby'];
-                            $vrequestedqty=$row['fldrequestedqty'];
-                            $vdaterequested=$row['flddaterequested'];
-                        
-				            $result1 = mysql_query("SELECT * FROM tbluser where fldcode='$vusercode' order by fldindex");
-				            while($row1 = mysql_fetch_array($result1))
-				            {
-				        ?>
-                  <tr>
-                    <th><?php echo $vcounter; ?></th>
-                    <td><?php echo $row1['fldcode']; ?></td>
-                    <td><?php echo $row1['fldlastname'].", ".$row1['fldfirstname']." ".$row1['fldmiddlename']; ?></td>
-                    <td><?php echo $row1['fldlocation']; ?></td>
-                    <td><?php echo $row1['fldlotarea']; ?></td>
-                    
-                    <td><?php echo $vcrops; ?></td>  
-                    <td><?php echo $vrequestedqty; ?></td>
-                    <td><?php echo $vdaterequested; ?></td>
-                    <td><?php echo $vseeddistributed; ?></td>
-                    <td><?php echo $vstatusx; ?></td>
-                    <?php
-                    if($row['fldstatus']!="Distributed")
-                    {
-                    ?>   
-                    <td><button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminseeddistributionall1.php?vuid=<?php echo $row1['fldcode']; ?>&vuid1=<?php echo $vseedrequestedcode; ?>&vuid2=<?php echo $row['fldcode']; ?>'">&nbsp;&nbsp;View&nbsp;&nbsp;
-                    <?php
-                    }
-                    else
-                    {
-                    ?>
-                    <?php
-                        $vpa=0;
-                        $result2 = mysql_query("SELECT * FROM tblseedplanted where flddistributioncode='$vdistributioncode'  order by fldindex");
-				            while($row2 = mysql_fetch_array($result2))
-				            {
-                                $vpa=1;
-                                $vseedplantedcode=$row2['fldcode'];    
-                            }
-                    ?>  
-                    <?php 
-                    if($vpa==1)
-                    {
-                    ?>
-                     <td><button  type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmharvestcropspicall.php?vuid=<?php echo $vseedplantedcode; ?>&vuid1=<?php echo $vcrops; ?>'">View Picture</button></td>  
-                    <?php
-                    }
-                    else
-                    {
-                    ?>
-                    <td><button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminseeddistribution1.php?vuid=<?php echo $row1['fldcode']; ?>&vuid1=<?php echo $vcropcode; ?>&vuid2=<?php echo $row['fldcode']; ?>'">&nbsp;&nbsp;View&nbsp;&nbsp;</button></td> 
-                    <?php
-                    }
-                    }
-                    ?>
-                    
-                    
-                  </tr>
-                    
-                    <?php
-                        $vcounter=$vcounter+1;
-                            }
-                        }
-                    ?>
-                  
-                </tbody>
-              </table>
+                         </tbody>
+                    </table>
               <!-- End Table with stripped rows -->
             
-            </div>
+               </div>
           </div>
 
-        </div>
+     </div>
             <!-- Sales Card -->
             <!-- End Sales Card -->
 

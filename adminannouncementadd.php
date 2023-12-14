@@ -253,7 +253,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -360,33 +360,37 @@ if(isset($_SESSION['views']))
                 $vcodex=$_POST['txtcode'];
                 $vcropsx=$_POST['txtcrops'];
                 
-				$vstatusx=$_POST['txtstatus'];
-                
-                $target = "../stotomaswebsite/img/";
-				$target = $target . basename( $_FILES['photo']['name']);
-		
-                $pic=($_FILES['photo']['name']);
+				        $vstatusx=$_POST['txtstatus'];
+                $description = $_POST['message'];
+                $txtcolor = $_POST['txtcolor'];
 				
-                echo $pic;
+                $temp = explode(".", $_FILES["photo"]["name"]);
+                $newfilename = round(microtime(true)) . '.' . end($temp);
+
+                $target = "img/";
+				        $target = $target . $newfilename;
                 
 				if($pic=="")
 				{
 				    $pic="blank.jpg";
 				}
+
+        $sql="INSERT INTO tblannouncement (fldindex, fldcode, fldannouncement, fldstatus,announceDesc, txtcolor) VALUES ('$vctr','$vcodex','$newfilename','$vstatusx','$description', '$txtcolor')";
+        if (!mysql_query($sql,$con))
+        {
+            die('error: ' . mysql_error());
+        }
                 
-                $sql="INSERT INTO tblannouncement (fldindex, fldcode, fldannouncement, fldstatus) 
-	VALUES ('$vctr','$vcodex','$pic','$vstatusx')";
-
-										if (!mysql_query($sql,$con))
-										{
-  											die('error: ' . mysql_error());
-  										}
 										//Writes the photo to the server
-   										 if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
-									    {
+                    // $temp = explode(".", $_FILES["photo"]["name"]);
+                    // $newfilename = round(microtime(true)) . '.' . end($temp);
+                    // move_uploaded_file($_FILES["file"]["tmp_name"], "img/" . $newfilename);
 
-											basename( $_FILES['uploadedfile']['name']);
+   										 if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)){
 
+											  basename( $_FILES['uploadedfile']['name']);
+                        
+                        
 										    //Tells you if its all ok
 										    //echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been 
 
@@ -435,6 +439,21 @@ if(isset($_SESSION['views']))
                     </div>
                   
                 </div>
+                <div class="row mb-3">
+                  <label for="inputState" class="form-label col-sm-2 col-form-label">Message</label>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control col-sm-6" id="validationCustom01" name="message" />
+                    
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleColorInput" class="form-label">Color picker</label>
+                    <div class="col-sm-3">
+                      <input type="color" class="form-control  form-control-color" id="exampleColorInput" name="txtcolor" value="#000" title="Choose your color">
+                    </div>
+                </div>
+
+                
                 <div class="row mb-3">
                   <label for="inputState" class="form-label col-sm-2 col-form-label">Status</label>
                  <div class="col-sm-3">

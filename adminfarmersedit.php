@@ -256,7 +256,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -416,6 +416,7 @@ if(isset($_SESSION['views']))
 								}
 								else
 								{
+                  
 								    mysql_query("UPDATE tbluser SET fldlastname = '$vlastnamex',fldfirstname = '$vfirstnamex',fldmiddlename = '$vmiddlenamex',fldusername = '$vusernamex',fldlocation = '$vlocationx',fldlotarea = '$vlotareax',fldgender = '$vgenderx',fldemail = '$vemailx',fldstatus = '$vstatusx' WHERE fldcode = '$vcodex'");										
 										
 								?>

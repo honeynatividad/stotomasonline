@@ -252,7 +252,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -358,7 +358,22 @@ if(isset($_SESSION['views']))
                             
                             //echo $vfemail;
 				        ?>
-                    
+                    <!-- Modal -->
+
+                    <div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Verify Insurance <?php echo $row['fldcode']; ?></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='admininsuranceverifydenied.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Denied</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verified</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <tr>
                     <td>
                       <div class="custom-control custom-checkbox">
@@ -374,13 +389,13 @@ if(isset($_SESSION['views']))
                       <?php 
                         if($row['fldstatus']=='Verified'){
                       ?>
-                        <div class="p-3 rounded-3 bg-success">
+                        <div class="p-1 text-center rounded-3 bg-success">
                          <?php echo $row['fldstatus'];  ?>
                         </div>
                       <?php    
                         } else if ($row['fldstatus']=='Denied') {
                       ?>
-                        <div class="p-3 rounded-3 bg-danger">
+                        <div class="p-1 text-center rounded-3 bg-danger">
                          <?php echo $row['fldstatus'];  ?>
                         </div>
                       <?php
@@ -394,41 +409,27 @@ if(isset($_SESSION['views']))
                         if($row['fldstatus']=="Denied") 
                         {
                             ?>
-                        <button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verify</button>
+                        <button disabled type="button" class="btn btn-primary btn-sm" data-id='<?php echo $row['fldcode']; ?>' onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verified</button>
                         <?php
                         }
                           else if($row['fldstatus']!="Verified")  
                           {
                         ?>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#verifyModal">Verify</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='admininsuranceverifydenied.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Denied</button>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verify</button>
                         
                         <?php
                         }
                         else
                         {
                             ?>
-                        <button disabled type="button" class="btn btn-primary btn-sm" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verify</button>
+                        
                         <?php
                         }
                             ?>
                       </td>
                   </tr>
-                    <!-- Modal -->
-
-                    <div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Verify Insurance</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <button type="button" class="btn btn-secondary" onclick="window.location.href='admininsuranceverifydenied.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Denied</button>
-                            <button type="button" class="btn btn-primary" onclick="window.location.href='admininsuranceverify.php?vuid=<?php echo $row['fldcode']; ?>&vuid1=<?php echo $vinsurancecodex; ?>&vuid2=<?php echo $vcode; ?>&vuid3=<?php echo $vfarmercode; ?>&vuid4=<?php echo $vuseremail; ?>&vuid5=<?php echo $vfemail; ?>'">Verified</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                     <?php
                         $vcounter=$vcounter+1;
                         }
@@ -471,6 +472,7 @@ if(isset($_SESSION['views']))
 
       </div>
     </section>
+ 
 
   </main><!-- End #main -->
 

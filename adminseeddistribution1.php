@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -296,7 +296,7 @@ if(isset($_SESSION['views']))
 $vusercode=$_REQUEST['vuid'];      
 $vcropcode=$_REQUEST['vuid1'];   
 $vrequestedcode=$_REQUEST['vuid2'];   
-
+$vuserfldcode=$_REQUEST['vuiduser'];
 $result = mysql_query("SELECT * FROM tbluser where fldcode='$vusercode'");
 while($row = mysql_fetch_array($result))
 {
@@ -461,7 +461,11 @@ if($vexist==0)
                     }
                     $vctr=$vctr+1;
                     
-                    $sql="INSERT INTO tblseeddistribution (fldindex, fldcode, fldrequestcode, flddate, fldseeddistributed) VALUES ('$vctr','$vcodex','$vrequestcodex','$vdatexx','$vseeddistributedx')";
+                    $tblfarm = mysql_query("SELECT * FROM tblfarm WHERE fldfarmercode = '$vuserfldcode'");
+                    while($rowfarm = mysql_fetch_array($tblfarm)){
+                      $farmcode=$rowfarm['fldcode'];
+                    }
+                    $sql="INSERT INTO tblseeddistribution (fldindex, fldcode, fldrequestcode, flddate, fldseeddistributed,tlbfarmcode) VALUES ('$vctr','$vcodex','$vrequestcodex','$vdatexx','$vseeddistributedx','$farmcode')";
 
 				    if (!mysql_query($sql,$con))
 				    {

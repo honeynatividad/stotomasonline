@@ -9,6 +9,11 @@ session_start();
 require("include/conn.php");
 $vem=$_REQUEST['vuid'];
 //////////////////
+if($vem=='') {
+?>
+<meta  http-equiv="refresh" content=".000001;url=login.php" /><title>Login</title>
+<?php
+}
 $vs=0;
 $_SESSION['views']="a";
 $result = mysql_query("SELECT * FROM tblusertemp where fldemail='$vem'");

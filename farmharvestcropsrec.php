@@ -424,6 +424,7 @@ if(isset($_SESSION['views']))
                         $vrequestcodex=$row['fldrequestcode'];
                         
                     }
+                    mysql_query("UPDATE tblseedrequested SET fldstatus = 'Harvested' WHERE fldcode = '$vrequestcodex'");
                     $result = mysql_query("SELECT * FROM tblseedrequested where fldcode='$vrequestcodex' order by fldindex");
                     while($row = mysql_fetch_array($result))
                     {
@@ -547,16 +548,17 @@ if(isset($_SESSION['views']))
                     <label for="inputDate" class="col-sm-2 col-form-label">End of Harvest</label>
                   <div class="col-sm-3">
                     <?php
+                    
                     if($vharvestdateendx=="-0001-11-30")
                     {
                     ?>
-                        <input type="date" class="form-control" name="txtharvestdateend" required value=<?php echo date("Y-m-d"); ?>>
+                        <input type="date" class="form-control" name="txtharvestdateend" max="<?php echo date("Y/m/d"); ?>" required value=<?php echo date("Y-m-d"); ?>>
                     <?php
                     }
                     else
                     {
                     ?>
-                        <input type="date" class="form-control" name="txtharvestdateend" required value=<?php echo $vharvestdateendx; ?>> 
+                        <input type="date" class="form-control" name="txtharvestdateend" max="<?php echo date("Y/m/d"); ?>" required value=<?php echo $vharvestdateendx; ?>> 
                     <?php
                     }
                     ?>
@@ -619,7 +621,12 @@ if(isset($_SESSION['views']))
     </section>
 
   </main><!-- End #main -->
-
+  <script>
+var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("txtharvestdateend")[0].setAttribute('min', today);
+    document.getElementsByName("txtharvestdateend")[0].setAttribute('max', today);
+</script>
+  <!-- =======
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

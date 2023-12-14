@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -347,7 +347,17 @@ if(isset($_SESSION['views']))
                         <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmersedit.php?vuid=<?php echo $row['fldcode']; ?>'">Edit</button>
                         
                         <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='adminfarmersfarm.php?vuid=<?php echo $row['fldcode']; ?>'">Farm</button>
-                      
+                      <?php
+                        if($row['fldstatus']=='Active') {
+                      ?>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='adminfarmersstatus.php?vuid=<?php echo $row['fldcode']; ?>&status=deactivate'">Deactivate</button>
+                      <?php
+                        } else if($row['fldstatus']=='Registered'|| $row['fldstatus']=='Inactive') {
+                      ?>
+                      <button type="button" class="btn btn-warning btn-sm" onclick="window.location.href='adminfarmersstatus.php?vuid=<?php echo $row['fldcode']; ?>&status=activate'">Activate</button>
+                      <?php
+                        }
+                      ?>
                     </td>
                   </tr>
                     

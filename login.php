@@ -50,7 +50,7 @@
      <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px;" /></a>
+            <a class="navbar-brand" style="font-size: 14px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -71,11 +71,8 @@
 require("include/conn.php"); 
 ?>
 <script>
-function fSave()
-{
+function fSave(){
     document.frm["txtpostx"].value=1;
-    
-										
 }
 </script>
 
@@ -86,21 +83,24 @@ $vpassword=$_POST['password'];
 $vtest2=0;
 								
 require("include/conn.php"); 
-							
-$result = mysql_query("SELECT * FROM tbluser where fldusername='$vusername' && fldpassword='$vpassword'");
-while($row = mysql_fetch_array($result))
-{
+
+if($vusername != '') {
+
+
+$query = "SELECT * FROM tbluser WHERE fldusername = '$vusername' AND fldstatus='Active'";
+$results = mysql_query($query);
+$user_data_row = mysql_fetch_array($results);
+if(password_verify($vpassword, $user_data_row['fldpassword'])){
+ 
     $vtest2=1;
 }
-if($vtest2==0)
-{
+if($vtest2==0){
     $vtestxxx=0;
     $vtestxxx=$_POST['txtpostx'];
-    if($vtestxxx==1)
-    {
+    if($vtestxxx==1){
 ?>                                    
         <script>
-            alert("Invalid Username or Password!");									
+           alert("Invalid Username or Password!");									
         </script>
                                    
 <?php
@@ -122,7 +122,9 @@ if($vtest2==1)
     }
 	
 }
+}
 ?>
+
   <main>
   <form action="login.php" name="frm" class="" id="block-validate" method="post">
   <input type="hidden" name="txtpostx" id="txtpostx">
@@ -172,6 +174,10 @@ if($vtest2==1)
                     
                     <div class="col-12">
                       <button class="btn btn-info w-100" onClick="fSave()" type="submit">Login</button>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                      <a class="btn btn-info w-100" href="farmerregister.php" >Register</a>
                     </div>
                     
                   </form>

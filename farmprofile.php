@@ -396,7 +396,8 @@ if(isset($_SESSION['views']))
 								}
 								else
 								{
-								    mysql_query("UPDATE tbluser SET fldlastname = '$vlastnamex',fldfirstname = '$vfirstnamex',fldmiddlename = '$vmiddlenamex',fldusername = '$vusernamex',fldemail = '$vemailx',fldpassword = '$vpasswordx',fldimage = '$pic' WHERE fldcode = '$vcodex'");	
+                  $password = password_hash($vpasswordx, PASSWORD_DEFAULT);
+								    mysql_query("UPDATE tbluser SET fldlastname = '$vlastnamex',fldfirstname = '$vfirstnamex',fldmiddlename = '$vmiddlenamex',fldusername = '$vusernamex',fldemail = '$vemailx',fldpassword = '$password',fldimage = '$pic' WHERE fldcode = '$vcodex'");	
                                     //Writes the photo to the server
    										 if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
 									    {
@@ -487,7 +488,7 @@ if(isset($_SESSION['views']))
                 <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" name="txtpassword" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" required name="txtpassword" class="form-control" id="floatingPassword" placeholder="Password">
                   </div>
                 </div>
                 

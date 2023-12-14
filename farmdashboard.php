@@ -319,8 +319,6 @@ if(isset($_SESSION['views']))
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Code</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Lot Area</th>
                     <th scope="col">Crop Name</th>
                     <th scope="col">Qty. Requested (Grams)</th>
                     <th scope="col">Date Requested</th>
@@ -360,8 +358,6 @@ if(isset($_SESSION['views']))
                   <tr>
                     <th><?php echo $vcounter; ?></th>
                     <td><?php echo $row['fldcode']; ?></td>
-                    <td><?php echo $row['fldlocation']; ?></td>
-                    <td><?php echo $vlotarea; ?></td>
                     <td><?php echo $vcrops; ?></td>
                     <td><?php echo $row['fldrequestedqty']; ?></td>
                     <td><?php echo $row['flddaterequested']; ?></td>

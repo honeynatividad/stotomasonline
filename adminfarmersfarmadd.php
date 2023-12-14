@@ -251,7 +251,7 @@ if(isset($_SESSION['views']))
         </a>
       </li>    
     <li class="nav-item">
-        <a class="nav-link collapsed" href="adminheatmap.php">
+        <a class="nav-link collapsed" href="adminheatmapfarmer.php">
           <i class="bi bi-globe2"></i>
           <span>Mapping</span>
         </a>
@@ -374,9 +374,12 @@ if(isset($_SESSION['views']))
 	            $vfarmercodex=$_POST['txtfarmercode'];
                 $vlocationx=$_POST['txtlocation'];
                 $vlotareax=$_POST['txtlotarea'];
+                $vfarmname=$_POST['txtfarmname'];
+                $vfldlong=$_POST['txtlong'];
+                $vfldlat=$_POST['txtlat'];
                 
-				    $sql="INSERT INTO tblfarm (fldindex, fldcode, fldfarmercode, fldlocation, fldlotarea) 
-                    VALUES ('$vctr','$vcodex','$vfarmercodex','$vlocationx','$vlotareax')";
+				    $sql="INSERT INTO tblfarm (fldindex, fldcode, fldfarmercode, fldlocation, fldlotarea, fldfarmname, fldlong, fldlat) 
+                    VALUES ('$vctr','$vcodex','$vfarmercodex','$vlocationx','$vlotareax', '$vfarmname','$vfldlong','$vfldlat')";
 
 				    if (!mysql_query($sql,$con))
 				    {
@@ -400,7 +403,7 @@ if(isset($_SESSION['views']))
              <!--  <form class="row g-3 needs-validation" method="post" name="frm" id="block-validate" action="adminadminadd.php" enctype="multipart/form-data"  novalidate>-->
                     <input type="hidden" name="txt1" id="txt1">
                     <input type="hidden" name="txtpost" id="txtpost">
-                    <input type="hidden" name="txtfarmercode" id="txtfarmercode" value="<?php echo $vfarmercodex; ?>">
+                    <input type="hidden" name="txtfarmercode" id="txtfarmercode" value="<?php echo $vfarmercodex; ?>">PO
                     <input type="hidden" name="txtcode" id="txtcode" value="<?php echo $vcodex; ?>">
                   <div>
                   </div>
@@ -440,6 +443,42 @@ if(isset($_SESSION['views']))
                
                   <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlotarea" value="<?php echo $vlotareax; ?>" required>  
                     </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Farm Name</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" id="validationCustom01" name="txtfarmname" value="<?php echo $vfarmname; ?>" required>  
+                  </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Longitude</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlong"  required>  
+                  </div>
+                  
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="validationCustom01" class="form-label col-sm-2 col-form-label">Latitude</label>
+                  <div class="col-sm-3">
+               
+                    <input type="text" class="form-control col-sm-2" placeholder="0.0" id="validationCustom01" name="txtlat" required>  
+                  </div>
                   
                   <div class="valid-feedback">
                     Looks good!

@@ -58,7 +58,7 @@ require("include1/conn.php");
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px;" /></a>
+            <a class="navbar-brand" style="font-size: 14px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -80,52 +80,37 @@ require("include1/conn.php");
         
          <!-- Masthead-->
            <header class="masthead" style="background-color: lightblue;">
-            <div class="container">
-        <?php 
-                require("include/conn.php");
-				        $result = mysql_query("SELECT * FROM tblvideo where fldstatus='Published' order by fldindex");
-				        while($row = mysql_fetch_array($result))
-				        {
-				            $arrcode =$row['fldcode'];
+            <div class="container overflow-hidden text-center">
+                <div class="row gx-5">
+                    
+                    <?php 
+                        require("include/conn.php");
+                        $result = mysql_query("SELECT * FROM tblvideo where fldstatus='Published' order by fldindex");
+                        while($row = mysql_fetch_array($result))
+                        {
+                            $arrcode =$row['fldcode'];
                             $arrpicture=$row['fldvideo'];
-			                $arrdescription = $row['fldcrops'];			
+                            $arrdescription = $row['fldcrops'];			
                             $arrimage=$row['fldimage'];	
                             $title = $row ['videoTitle'];
-				        ?>
-                  <button class="accordion-button" onclick="playPause()"><?php echo $row['fldcrops'] ?></button>
-                  <div class="panel">
-                   <p><iframe width="800" height="315" src="<?php echo $arrpicture; ?>" title="<?php echo $title; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                   </p>
-                  </div>
+                        ?>
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <iframe class="card-img-top" src="<?php echo $arrpicture; ?>" title="<?php echo $title; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['fldcrops']?></h5>
+                                    <p class="card-text" STYLE="color:#000000"k><?php echo $row ['videoTitle'] ?></p>
+                                    <a href="<?php echo $row['fldvideo'] ?>" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
                         <?php
                         }
-                    ?>
-
-        <script>
-            var acc = document.getElementsByClassName("accordion-button");
-            var i;
-
-            for (i = 0; i < acc.length; i++) {
-              acc[i].addEventListener("click", function() {
-              this.classList.toggle("active");
-              var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-              panel.style.maxHeight = null;
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + "px";
-            } 
-        });
-      }
-      
-       var myVideo = document.getElementById("video1"); 
-
-            function playPause() { 
-            if (myVideo.paused) 
-                myVideo.play(); 
-            else 
-                myVideo.pause(); 
-            } 
-        </script>
+                        ?>
+                    
+                </div>
+        
         </div>
     </header>
          
