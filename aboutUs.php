@@ -63,7 +63,7 @@ require("include1/conn.php");
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-            <a class="navbar-brand" style="font-size: 12px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " />City Agriculture Office of Sto Tomas, Batangas</a>
+                <a class="navbar-brand " style="font-size: 14px;color: blue;" href="#page-top"><img src="img/mainlogo.jpg" alt="..." style="height:70px; " /><span class="desktop">City Agriculture Office of Sto Tomas, Batangas</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -84,17 +84,25 @@ require("include1/conn.php");
         
         
          <!-- Masthead-->
-           <header class="masthead" style="background-color: lightblue;">
+           <header class="masthead" style="background-color: lightblue;padding-top: 10rem!important;">
             <div class="container">
                 <?php 
                 require("include/conn.php");
                 $result = mysql_query("SELECT * FROM tblaboutus");
+                $isprogramchart=false;
                 while($row = mysql_fetch_array($result)) {
-                    if($row['aboutus']='Vision') {
+                    if($row['aboutus']=='Vision') {
                         $vision=$row['aboutusDesc'];
                     }
-                    if($row['aboutus']='Mission') {
+                    if($row['aboutus']=='Mission') {
                         $mission=$row['aboutusDesc'];
+                    }
+                    
+                    if($row['aboutus']=='Program Chart') {
+                        $chart = $row['aboutusDesc'];
+                    }
+                    if(!empty($chart)) {
+                        $isprogramchart = true;
                     }
                     
                 }
@@ -105,19 +113,20 @@ require("include1/conn.php");
                     <h1>Vission</h1>
                         <p>"<?php echo $vision ?>"</p>
                 </div>
-
-                <h2 style="text-align:center">Program</h2>
-                <div class="row1">
-                    <div class="column1">
-                            <img src="img/banana-tree.png" alt="Sto Tomas" style="width:40%">
-                                <div class="container1">
-                                    <h2>Banna Program</h2>
-                                        <p class="title">Banana Program</p>
-                                            <p>Banna mainly focuses on the strengthening of corn production in the city proving interventions such as inputs and technical assistance</p>
-                                                <p>example@example.com</p>
-                                </div>
+                <?php 
+                    if($isprogramchart) {
+                ?>
+                    <br>
+                    <h2 style="text-align:center">Program Chart</h2>
+                    <div class="row1">
+                        
+                            <img src="<?php echo $chart; ?>" alt="Sto Tomas" style="width:100%">
+                        
                     </div>
-                </div>
+                <?php
+                    }
+                ?>
+                
             </div>
         </header>
          

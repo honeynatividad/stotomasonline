@@ -177,10 +177,7 @@ body {
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="dashboard.php" class=" d-flex align-items-center">
-        <img src="assets/img/banner.jpg" height="60" alt="">
-        <span class="d-none d-lg-block"></span>
-      </a>
+      <a class="navbar-brand " style="font-size: 14px;color: blue;" href="#page-top"><img height="60" height="60" src="img/mainlogo.jpg" alt="..."  /><span class="desktop">City Agriculture Office of Sto Tomas, Batangas</span></a>
      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
     <?php
